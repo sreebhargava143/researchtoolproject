@@ -1,5 +1,7 @@
 ### Cusotm ###
 .env
+*.pem
+.vscode
 ### Django ###
 *.log
 *.pot
