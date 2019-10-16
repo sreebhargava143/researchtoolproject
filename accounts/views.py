@@ -6,10 +6,8 @@ from accounts.forms import SignUpForm
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        print('post request')
         form = SignUpForm(request.POST)
         if form.is_valid():
-            print('form is valid')
             if form.cleaned_data.get('password') == form.cleaned_data.get('password2'):
                 username = form.cleaned_data.get('username')
                 email = form.cleaned_data.get('email')
