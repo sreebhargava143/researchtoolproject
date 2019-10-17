@@ -6,6 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from crispy_forms.helper import FormHelper, Layout
 from crispy_forms.layout import Submit, Field, Fieldset, ButtonHolder
 
+class LoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
 
 class SignUpForm(forms.Form):
     username = forms.CharField(label='Username',
