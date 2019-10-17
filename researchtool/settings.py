@@ -35,14 +35,13 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts.apps.AccountsConfig',
-    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -82,18 +81,18 @@ WSGI_APPLICATION = 'researchtool.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': os.environ.get("DB_NAME"),
-    #     'USER': os.environ.get("DB_USER"),
-    #     'PASSWORD': os.environ.get("DB_PASSWORD"),
-    #     'HOST': os.environ.get("DB_HOST"),
-    #     'PORT': os.environ.get("DB_PORT"),
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get("DB_NAME"),
+        'USER': os.environ.get("DB_USER"),
+        'PASSWORD': os.environ.get("DB_PASSWORD"),
+        'HOST': os.environ.get("DB_HOST"),
+        'PORT': os.environ.get("DB_PORT"),
+    }
 }
 
 
