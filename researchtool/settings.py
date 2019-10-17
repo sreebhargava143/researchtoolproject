@@ -47,8 +47,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'widget_tweaks',
 ]
-SITE_ID = 1
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -68,6 +69,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'accounts/templates'),
             os.path.join(BASE_DIR, 'main/templates'),
+            os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -168,7 +170,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
 # LOGIN_URL = 'login'
 # LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/home'
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS =1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
@@ -176,4 +178,4 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 # 1 day
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 #or any other page
-ACCOUNT_LOGOUT_REDIRECT_URL ='/accounts/login/'
+ACCOUNT_LOGOUT_REDIRECT_URL ='/'

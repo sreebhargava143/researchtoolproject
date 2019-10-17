@@ -32,6 +32,7 @@
           </div>
         {% endif %}
         <form action="{% url 'login' %}" method="POST">
+            
           {% csrf_token %}
           <div class="form-group">
             <input type="text" name="username" required class="form-control col-md-6" placeholder="User Name">
@@ -53,7 +54,7 @@
       </div>
 
       <div class="login-footer">
-        New to RT? <a href="#">Sign up now »</a>
+        New to RT? <a href="#">Sign up now </a>
       </div>
 
     </div>

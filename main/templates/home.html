@@ -10,6 +10,18 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}" />
 </head>
 <body>
+    {% if messages %}
+ <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
+   <ul>
+     {% for message in messages %}
+       <li><h5>{{message}}</h5></li>
+     {% endfor %}
+   </ul>
+   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+  {% endif %}
   <div class="container-main">
     <div class="div-1">
       <div class="center-class">
@@ -31,7 +43,7 @@
       <div class="login-box">
         <div class="top">
           <img src="https://img.icons8.com/doodle/48/000000/search--v2.png">
-          <a class="a-login" href="{% url 'login' %}">Log in</a>
+          <a class="a-login" href="{% url 'account_login' %}">Log in</a>
         </div>
         <div class="middle">
 
@@ -39,12 +51,40 @@
         </div>
         <div class="bottom">
           <h6><strong>Join RT today.</strong></h6>
-          <a class="a-signup" href="{% url 'register' %}">Sign up</a>
-          <a class="a-login" href="{% url 'login' %}">Log in</a>
+          <a class="a-signup" data-toggle="modal" data-target="#signup" href="#signup" id='signup_btn'>Sign up</a>
+          <a class="a-signup" href="{% url 'account_login' %}">Log in</a>
         </div>
       </div>
     </div>
   </div>
+    <!-- Modal -->
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="signupTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title" id="exampleModalLongTitle">Sign Up</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+              <p>Already have an account? Then please <a href="/accounts/login/">sign in</a>.</p>
+
+              <form class="signup" id="signup_form" method="post" action="{%url 'account_signup'%}" class="form-group">
+                {% csrf_token %}
+                <p><input class="form-control form-control-lg" type="email" name="email" placeholder="E-mail address" required id="id_email"></p>
+              <p><input class="form-control form-control-lg" type="text" name="username" placeholder="Username" autofocus="autofocus" minlength="1" maxlength="150" required id="id_username"></p>
+              <p><input class="form-control form-control-lg" type="password" name="password1" placeholder="Password" required id="id_password1"></p>
+              <p><input class="form-control form-control-lg" type="password" name="password2" placeholder="Confirm Password" required id="id_password2"></p>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Sign Up &raquo;</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

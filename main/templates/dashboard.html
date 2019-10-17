@@ -13,7 +13,11 @@
   <div class="container">
     <div class="">
       Hi, {{ request.user }}
-      <a href="{% url 'logout'%}">Log out</a>
+      <a href="{% url 'account_logout'%}">Log out</a>
+      <form method="post" action="{% url 'account_logout' %}">
+          {% csrf_token %}
+          <button type="submit">SIGN OUT</button>
+        </form>
     </div>
     <div class="">
       {% block content %}
