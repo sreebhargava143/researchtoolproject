@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 # Application definition
 
 INSTALLED_APPS = [
+    'main.apps.MainConfig',
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     'django.contrib.admin',
@@ -59,8 +60,9 @@ ROOT_URLCONF = 'researchtool.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'accounts/templates'),
-            os.path.join(BASE_DIR, 'templates'),
+        'DIRS': [
+            os.path.join(BASE_DIR, 'accounts/templates'),
+            os.path.join(BASE_DIR, 'main/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -136,8 +138,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     '/accounts/static/',
+    '/main/static/',
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'dashboard'
 LOGOUT_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
