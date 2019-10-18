@@ -10,8 +10,8 @@
 <div class="container-main">
     <div class="navbar-nb">
       <ul>
-        <li><img src="https://img.icons8.com/doodle/48/000000/search--v2.png"></li>
-        <li><a href="{% url 'home' %}">PRO STALKER</a></li>
+        <li><img src="https://img.icons8.com/ultraviolet/30/000000/user-typing-using-typewriter.png"></li>
+        <li><a href="{% url 'home' %}">Storead</a></li>
       </ul>
     </div>
     <div class="div-login">
@@ -19,31 +19,31 @@
           <h4>{% trans "Sign In" %}</h4>
 
           {% get_providers as socialaccount_providers %}
-          
+
           {% if socialaccount_providers %}
           <p>{% blocktrans with site.name as site_name %}Please sign in with one
           of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
           for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
-          
+
           <div class="socialaccount_ballot">
-          
+
             <ul class="socialaccount_providers">
               {% include "socialaccount/snippets/provider_list.html" with process="login" %}
             </ul>
-          
+
             <div class="login-or">{% trans 'or' %}</div>
-          
+
           </div>
-          
+
           {% include "socialaccount/snippets/login_extra.html" %}
-          
+
           {% endif %}
 
-          
+
           <form class="login" method="POST" action="{% url 'account_login' %}" validate>
             {% csrf_token %}
             {% include 'account/form.html' with form=form %}
-            
+
             {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
@@ -53,10 +53,10 @@
                 <button class="primaryAction button-login" type="submit" >{% trans "Sign In" %}</button>
             </div>
           </form>
-      </div>     
+      </div>
       <div class="login-footer">
-          New? then<a href="{{ signup_url }}"> sign up »</a>
-        </div>   
+          New to Storead? then<a href="{{ signup_url }}"> sign up »</a>
+        </div>
     </div>
 
 {% endblock %}

@@ -72,10 +72,11 @@ body {
     flex-wrap: wrap;
   }
 
-  .container-main .div-2 .login-box .bottom h4{
+  .container-main .div-2 .login-box .top h6 strong{
     width: 100%;
     margin-bottom: 1rem;
     font-size: 1em;
+    color: #1da1f2;
   }
 
   .container-main .div-2 .login-box .bottom a{
