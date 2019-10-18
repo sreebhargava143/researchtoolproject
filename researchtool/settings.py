@@ -34,8 +34,8 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 # Application definition
 
 INSTALLED_APPS = [
+    'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
-    'accounts.apps.AccountsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,6 +69,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'accounts/templates'),
             os.path.join(BASE_DIR, 'main/templates'),
+            os.path.join(BASE_DIR, 'explorer/templates'),
             os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
