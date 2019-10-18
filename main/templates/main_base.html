@@ -6,6 +6,8 @@
   <meta charset="utf-8">
   <title>{% block title %}Storead{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"/>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}" />
   <link rel="stylesheet" type="text/css" href="{% static 'css/main_base.css' %}" />
   <script src="https://kit.fontawesome.com/803986fb40.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -79,7 +81,9 @@
     </div>
 
     <div class="right-sidebar">
-      <input type="text" name="search" value="search">
+      <input type="search" name="search" value="search">
+      {% block right_content %}
+      {% end right_content  %}
     </div>
   </div>
   <!-- Modal -->
