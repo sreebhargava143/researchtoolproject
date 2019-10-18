@@ -32,6 +32,7 @@
           </div>
         {% endif %}
         <form action="{% url 'login' %}" method="POST">
+
           {% csrf_token %}
           <div class="form-group">
             <input type="text" name="username" required class="form-control col-md-6" placeholder="User Name">
@@ -47,13 +48,13 @@
           <input type="hidden" name="next" value="{{ next }}" />
           <div class="form-links">
             <input class="button-login" type="submit" value="Log in">
-            <a href="#">Forgot Password?</a>
+            <a href="{%url 'password_reset'%}">Forgot Password?</a>
           </div>
         </form>
       </div>
 
       <div class="login-footer">
-        New to RT? <a href="{% url 'register' %}">Sign up now »</a>
+        New to Storead? <a href="{{ signup_url }}">Sign up now </a>
       </div>
 
     </div>
