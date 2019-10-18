@@ -52,7 +52,7 @@
         <div class="bottom">
           <h6><strong>Join RT today.</strong></h6>
           <a class="a-signup" data-toggle="modal" data-target="#signup" href="#signup" id='signup_btn'>Sign up</a>
-          <a class="a-signup" href="{% url 'account_login' %}">Log in</a>
+          <a class="a-signup" data-toggle="modal" data-target="#login" href="#login" id='login_btn'>Log in</a>
         </div>
       </div>
     </div>
@@ -80,6 +80,49 @@
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Sign Up &raquo;</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    <!-- login modal -->
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title" id="exampleModalLongTitle">Login</h1>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="div-login">
+              <div class="form-div">
+                <form action="{% url 'account_login' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <input type="text" name="username" required class="form-control col-md-6" placeholder="User Name">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" name="password" required class="form-control col-md-6" placeholder="Password">
+                  </div>
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="remember_me">
+                    <label class="form-check-label" for="remember_me">Remember Me</label>
+                  </div>
+        
+                  <input type="hidden" name="next" value="{{ next }}" />
+                  <div class="form-links">
+                    <input class="button-login" type="submit" value="Log in">
+                    <a href="{%url 'account_reset_password'%}">Forgot Password?</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              New? then<a href="{% url 'account_signup' %}"> sign up »</a>
+            </div>
           </div>
         </form>
         </div>
