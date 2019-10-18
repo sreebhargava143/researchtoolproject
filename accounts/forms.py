@@ -19,9 +19,3 @@ class SignUpForm(forms.Form):
     password = forms.CharField(label='Password',
         min_length=8, max_length=30, widget=PasswordInput, required=True)
     password2 = forms.CharField(label='Repeat Password', widget=PasswordInput, required=True)
-
-
-class SearchForm(forms.Form):
-    search_term = forms.CharField(label='Search Reddit')
-
-

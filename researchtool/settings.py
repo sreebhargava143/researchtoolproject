@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 INSTALLED_APPS = [
     'main.apps.MainConfig',
     'accounts.apps.AccountsConfig',
+    'explorer.apps.ExplorerConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
