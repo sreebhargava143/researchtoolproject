@@ -31,3 +31,7 @@ def comments(request, sub_name):
         text = sub.selftext
         comments = sub.comments
     return render(request, 'explorer/comments.html', {'comments': comments, 'text': text, 'title': title, 'author': author})
+
+
+def explore(request):
+    return render(request, 'explorer.html')

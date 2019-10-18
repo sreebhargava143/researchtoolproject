@@ -12,3 +12,11 @@ def home(request):
 @login_required
 def dashboard(request):
     return render(request, 'dashboard.html')
+
+@login_required
+def profile(request):
+    return render(request, 'profile.html')
+
+@login_required
+def bookmarks(request):
+    return render(request, 'bookmarks.html')
