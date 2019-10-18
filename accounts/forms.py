@@ -2,7 +2,9 @@ from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.forms.widgets import PasswordInput
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+
+from crispy_forms.helper import FormHelper, Layout
+from crispy_forms.layout import Submit, Field, Fieldset, ButtonHolder
 
 
 class LoginForm(forms.Form):
@@ -21,4 +23,5 @@ class SignUpForm(forms.Form):
 
 class SearchForm(forms.Form):
     search_term = forms.CharField(label='Search Reddit')
-    
+
+
