@@ -99,22 +99,22 @@
 
             <div class="div-login">
               <div class="form-div">
-                <form action="{% url 'account_login' %}" method="POST">
-                  {% csrf_token %}
+                <form class="login" method="POST" action="{% url 'account_login' %}" validate>
+                    {% csrf_token %}
                   <div class="form-group">
-                    <input type="text" name="username" required class="form-control col-md-6" placeholder="User Name">
+                      <input type="text" name="login" placeholder="Username" autofocus="autofocus" maxlength="150" class="form-control col-md-6" required id="id_login">
                   </div>
                   <div class="form-group">
-                    <input type="password" name="password" required class="form-control col-md-6" placeholder="Password">
+                    <input type="password" name="password" required class="form-control col-md-6" placeholder="Password" id="id_password">
                   </div>
                   <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="remember_me">
-                    <label class="form-check-label" for="remember_me">Remember Me</label>
+                      <div class="form-group form-check">
+                          <input type="checkbox" name="remember" class="form-check-input" id="id_remember"><label for="id_remember"><label for="id_remember">Remember Me</label></label></div>
                   </div>
         
                   <input type="hidden" name="next" value="{{ next }}" />
                   <div class="form-links">
-                    <input class="button-login" type="submit" value="Log in">
+                    <input class="button-login btn btn-primary" type="submit" value="Log in">
                     <a href="{%url 'account_reset_password'%}">Forgot Password?</a>
                   </div>
               </div>
@@ -124,6 +124,9 @@
               New? then<a href="{% url 'account_signup' %}"> sign up »</a>
             </div>
           </div>
+          {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
         </form>
         </div>
       </div>

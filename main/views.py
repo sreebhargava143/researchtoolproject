@@ -14,10 +14,6 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 @login_required
-def explore(request):
-    return render(request, 'explore.html')
-
-@login_required
 def profile(request):
     return render(request, 'profile.html')
 

@@ -37,12 +37,14 @@ body {
 }
 
 
+.container-main .left-sidebar menu li:hover,
 .container-main .left-sidebar menu li:hover{
   background-color: rgba(0, 30, 220, 0.2);
   border-radius: 100px;
   padding: .5em;
   color: #1c94e0;
 }
+a.selected
 
 .container-main .left-sidebar menu .a-tag{
   text-decoration: none;
