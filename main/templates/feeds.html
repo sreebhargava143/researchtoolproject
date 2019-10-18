@@ -1,0 +1,19 @@
+{% for feed in feeds %}
+        <div class="col-12">
+                <article class="media content-section fade show alert-dismissible ">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <a class="mr-2" href="#">{{ feed.author.name }}</a>
+                                <small
+                                    class="text-muted alert-info">comments: {{ feed.num_comments }}</small>
+                            </div>
+                            <h2><a class="article-title" href="#">{{ feed.subreddit.display_name }}</a></h2>
+                            <small
+                            class="text-muted alert-success">step in:{{ feed.ups }}</small>
+                            <small
+                            class="text-muted alert-danger">step out:{{ feed.downs }}</small>
+                            <p class="article-content">>{{ feed.subreddit.public_description }}</p>
+                        </div>
+                    </article>
+        </div>
+    {% endfor %}
