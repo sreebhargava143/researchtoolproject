@@ -14,15 +14,15 @@
   <div class="container-main">
     <div class="navbar-nb">
       <ul>
-        <li><img src="https://img.icons8.com/doodle/48/000000/search--v2.png"></li>
-        <li><a href="{% url 'dashboard' %}">Home</a></li>
+        <li><img src="https://img.icons8.com/doodle/24/000000/search--v2.png"></li>
+        <li><a href="{% url 'home' %}">Home</a></li>
       </ul>
 
     </div>
     <!-- div for login -->
     <div class="div-login">
       <div class="form-div">
-        <h4>Log in to RT</h4>
+        <h4>Log in to ResearchGate</h4>
         {% if form.errors %}
           <div class="alert alert-warning alert-dismissible fade show col-6" role="alert">
             username or password not correct
@@ -32,7 +32,7 @@
           </div>
         {% endif %}
         <form action="{% url 'login' %}" method="POST">
-            
+
           {% csrf_token %}
           <div class="form-group">
             <input type="text" name="username" required class="form-control col-md-6" placeholder="User Name">
@@ -54,7 +54,7 @@
       </div>
 
       <div class="login-footer">
-        New to RT? <a href="#">Sign up now </a>
+        New to Storead? <a href="{{ signup_url }}">Sign up now </a>
       </div>
 
     </div>
