@@ -15,7 +15,7 @@ def dashboard(request):
     reddit = praw.Reddit(
         client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
 
-    feeds = reddit.subreddit('all').top(limit=10)
+    feeds = reddit.subreddit('all').top(limit=1)
     context = {
         'feeds':feeds,
     }
