@@ -14,24 +14,30 @@ body {
     height: 100%;
   }
 
-  .container-main .div-1 {
+  .div-1 {
     width: 50%;
     height: 100%;
     background: #1da1f2;
+    background-image: url(https://img.icons8.com/ultraviolet/700/000000/user-typing-using-typewriter.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 50% 50%;
+    background-size: contain;
+    background-blend-mode: darken;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
   }
 
-  .container-main .div-1 .center-class{
+  .center-class{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin: 0 0 0 1em;
   }
 
-  .container-main .div-1 .center-class .div-class{
+  .div-class{
     display: flex;
     padding: 1.5em;
   }
@@ -41,7 +47,7 @@ body {
     font-size: 1em;
   }
 
-  .container-main .div-2 {
+  .div-2 {
     width: 50%;
     height: 100%;
     display: flex;
@@ -49,25 +55,25 @@ body {
     justify-content: center;
   }
 
-  .container-main .div-2 .login-box{
+  .login-box{
     display: flex;
     flex-direction: column;
     width: 55%;
   }
 
-  .container-main .div-2 .login-box .top{
+  .top{
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
   }
 
-  .container-main .div-2 .login-box .middle{
+  .middle{
     display: flex;
     justify-content: space-between;
     margin-bottom: 1rem;
   }
 
-  .container-main .div-2 .login-box .bottom{
+  .bottom{
     display: flex;
     flex-wrap: wrap;
   }
@@ -110,11 +116,10 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-
     justify-content: space-between;
   }
 
-  .container-main .div-1 {
+  .div-1 {
     width: 100%;
     background: #1da1f2;
     display: flex;
@@ -122,9 +127,15 @@ body {
     justify-content: center;
     color: white;
     order: 1;
+    background-image: url(https://img.icons8.com/ultraviolet/700/000000/user-typing-using-typewriter.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 500px 50%;
+    background-size: contain;
+    background-blend-mode: darken;
   }
 
-  .container-main .div-2 {
+  .div-2 {
     width: 100%;
     display: flex;
     align-items: center;
@@ -142,11 +153,10 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-
     justify-content: space-between;
   }
 
-  .container-main .div-1 {
+  .div-1 {
     width: 100%;
     background: #1da1f2;
     display: flex;
@@ -154,9 +164,15 @@ body {
     justify-content: center;
     color: white;
     order: 1;
+    background-image: url(https://img.icons8.com/ultraviolet/700/000000/user-typing-using-typewriter.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 200px 50%;
+    background-size: contain;
+    background-blend-mode: darken;
   }
 
-  .container-main .div-2 {
+  .div-2 {
     width: 100%;
     display: flex;
     align-items: center;
