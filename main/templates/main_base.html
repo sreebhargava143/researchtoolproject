@@ -10,17 +10,18 @@
   <script src="https://kit.fontawesome.com/803986fb40.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/basic_styles.css' %}" />
 </head>
 <body>
   <div class="container-main">
     <div class="left-sidebar">
       <menu class="menu-nav">
         <a class='a-tag' href="{% url 'dashboard' %}">
-            <span>
-              <img src="https://img.icons8.com/ultraviolet/26/000000/user-typing-using-typewriter.png">
-            </span>
-            <span class="hide">Home</span>
+          <span>
+            <img src="https://img.icons8.com/ultraviolet/26/000000/user-typing-using-typewriter.png">
+          </span>
+          <span class="hide">Home</span>
         </a>
         <a class='a-tag' href="{% url 'explore' %}">
           <div class="icon-tab">
@@ -44,37 +45,110 @@
           </div>
         </a>
         <a  class="a-tag" data-toggle="modal" data-target="#logout" href="#logout" id='logout_btn'>
-            <div class="icon-tab">
-              <span class="icons">
-                <i class="material-icons">logout</i>
-              </span>
-              <span class="hide">
-                Log out
-              </span>
-            </div>
+          <div class="icon-tab">
+            <span class="icons">
+              <i class="material-icons">logout</i>
+            </span>
+            <span class="hide">
+              Log out
+            </span>
+          </div>
         </a>
       </menu>
     </div>
 
-    <div class="main-content">
+    <div class="main-content ">
       {% if messages %}
       <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
-          {% for message in messages %}
-          <h6>{{message}}</h6>
-          {% endfor %}
+        {% for message in messages %}
+        <h6>{{message}}</h6>
+        {% endfor %}
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       {% endif %}
-      {% block content %}
-      {% endblock %}
-    </div>
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-around mt-5 mb-5">
+            <a href="{% url 'explorer_hot_feeds' %}" class="p-2">
+              <div class="box-part text-center">
+                <i class="material-icons">whatshot</i>
+                <div class="title">
+                  <h4>HOT</h4>
+                </div>
 
+
+              </div>
+            </a>
+
+            <a href="{% url 'explorer_rising_feeds' %}" class="p-2">
+
+              <div class="box-part text-center">
+
+                <i class="material-icons"
+                aria-hidden="true">trending_up</i>
+
+                <div class="title">
+                  <h4>Rising</h4>
+                </div>
+
+              </div>
+            </a>
+
+            <a href="{% url 'explorer_new_feeds' %}" class="p-2">
+
+              <div class="box-part text-center">
+
+                <i class="material-icons"
+                aria-hidden="true">email</i>
+
+                <div class="title">
+                  <h4>New</h4>
+                </div>
+
+
+
+              </div>
+            </a>
+
+            <a href="{% url 'explorer_controversial_feeds' %}" class="p-2">
+
+              <div class="box-part text-center">
+
+                <i class="material-icons"
+                aria-hidden="true">sentiment_very_dissatisfied
+              </i>
+
+                <div class="title">
+                  <h4>Controversial</h4>
+                </div></div>
+            </a>
+
+            <a href="{% url 'explorer_top_feeds' %}" class="p-2">
+
+              <div class="box-part text-center">
+
+                <i class="material-icons"
+                aria-hidden="true">star</i>
+
+                <div class="title">
+                  <h4>Top</h4>
+                </div>
+              </div>
+            </a>
+          </div>
+        <div class="row">
+          <div class="col-12 overflow-auto">
+            {% block content %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="right-sidebar">
       <input class="right-side-input" type="search" name="search" value="search">
       {% block right_content %}
-      {% endblock right_content  %}
+      {% endblock %}
     </div>
   </div>
   <!-- Modal -->
@@ -99,17 +173,19 @@
         </div>
       </div>
     </div>
-    <script type="text/javascript">
-    $(function(){
-      $("a").each(function(){
-        if ($(this).attr("href") == window.location.pathname){
-          $(this).addClass("active");
-        }
-      });
-    });
-    </script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-  </html>
+  </div>
+  <script type="text/javascript">
+  $(function($) {
+  let url = window.location.href;
+  $('a').each(function() {
+    if (this.href === url) {
+      $(this).addClass('active');
+    }
+  });
+});
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
