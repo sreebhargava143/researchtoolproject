@@ -34,8 +34,8 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 # Application definition
 
 INSTALLED_APPS = [
+    'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
-    'accounts.apps.AccountsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
+    
 ]
 SITE_ID = 2
 
@@ -69,6 +70,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'accounts/templates'),
             os.path.join(BASE_DIR, 'main/templates'),
+            os.path.join(BASE_DIR, 'explorer/templates'),
             os.path.join(BASE_DIR, 'templates'),
         ],
         'APP_DIRS': True,
@@ -152,9 +154,7 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    '/accounts/static/',
-    '/main/static/',
+    os.path.join(BASE_DIR, 'static')
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
