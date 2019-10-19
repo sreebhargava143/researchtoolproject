@@ -11,10 +11,9 @@ body {
   width: 100%;
 }
 
-.icon-18 { font-size: 18px; }
-.icon-24 { font-size: 24px; }
-.icon-36 { font-size: 36px; }
-.icon-48 { font-size: 48px; }
+.nav-div {
+  background-color: rgb(255, 255, 255);
+}
 
 .container-main {
   display: flex;
