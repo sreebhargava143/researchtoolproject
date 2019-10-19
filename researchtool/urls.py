@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('main.urls')),
     path('explorer/', include('explorer.urls')),
     path('accounts/', include('allauth.urls')),
+    path('explorer/', include('explorer.urls')),
 ]
