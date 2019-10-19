@@ -8,15 +8,17 @@ reddit = praw.Reddit(client_id='aN2WWXxjRA3FPQ',
 
 
 def search_reddit(request):
-    search_term = 'all'
+    all = reddit.subreddit('all')
     if request.method=="POST":
         form = SearchForm(request.POST)
         if form.is_valid():
-            search_term = form.cleaned_data.get('search_term')
-    subreddit = reddit.subreddit(search_term)
-    submissions = subreddit.top()
+            query = form.cleaned_data.get('search_term')
+            result = all.search(query, limit=250)
+    else:
+        result = all.top()
+        
     form = SearchForm()
-    return render(request, 'explorer/reddit.html', {'submissions': submissions, 'form': form})
+    return render(request, 'explorer/reddit.html', {'result':result, 'form': form})
 
 
 # def search_subreddit(request):
@@ -34,4 +36,13 @@ def comments(request, sub_name):
 
 
 def explore(request):
-    return render(request, 'explorer.html')
+    all = reddit.subreddit('all')
+    result = all.top()
+    if request.method == "GET":
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data.get('search_term')
+            result = all.search(query, limit=250)
+        
+    form = SearchForm
+    return render(request, 'explorer.html', {'result': result, 'form': form})

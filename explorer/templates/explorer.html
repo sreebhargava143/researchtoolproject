@@ -1,4 +1,12 @@
 {% extends "main_base.html" %}
 {% block content %}
 <h1>EXPLORE</h1>
+{% for item in result %}
+<div>
+    <div style="background: gold;">
+        <p>{{ item.title }} posted_by: {{ item.author }}</p>
+        <p>{{ item.selftext }}</p>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}

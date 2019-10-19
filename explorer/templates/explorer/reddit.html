@@ -4,14 +4,13 @@
     <input type="submit">
 </form>
 
-{% for item in submissions %}
+{% for item in result %}
 <div>
     <div style="background: gold;">
         <p>{{ item.title }} posted_by: {{ item.author }}</p>
         <p>{{ item.selftext }}</p>
         <a href=item.url>{{ item.url }}</a>
         <a href="{% url 'comments' sub_name=item.fullname %}">Comments</a>
-        <img src=item.url alt="">
     </div>
 </div>
 {% endfor %}
