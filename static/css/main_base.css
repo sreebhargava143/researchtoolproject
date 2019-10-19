@@ -36,7 +36,8 @@ body {
   height: 100%;
 }
 
-.a-tag {
+.a-tag,
+.category {
   font-weight: 600;
   color: black;
   padding: .5em;

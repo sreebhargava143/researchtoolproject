@@ -70,10 +70,10 @@
       {% endif %}
       <div class="container">
         <div class="d-flex flex-wrap justify-content-around mt-5 mb-5">
-            <a href="{% url 'explorer_hot_feeds' %}" class="p-2">
+            <a href="{% url 'explorer_hot_feeds' %}" class="p-2 a-tag">
               <div class="box-part text-center">
                 <i class="material-icons">whatshot</i>
-                <div class="title">
+                <div>
                   <h4>HOT</h4>
                 </div>
 
@@ -81,7 +81,7 @@
               </div>
             </a>
 
-            <a href="{% url 'explorer_rising_feeds' %}" class="p-2">
+            <a href="{% url 'explorer_rising_feeds' %}" class="p-2 a-tag">
 
               <div class="box-part text-center">
 
@@ -95,7 +95,7 @@
               </div>
             </a>
 
-            <a href="{% url 'explorer_new_feeds' %}" class="p-2">
+            <a href="{% url 'explorer_new_feeds' %}" class="p-2 a-tag">
 
               <div class="box-part text-center">
 
@@ -111,7 +111,7 @@
               </div>
             </a>
 
-            <a href="{% url 'explorer_controversial_feeds' %}" class="p-2">
+            <a href="{% url 'explorer_controversial_feeds' %}" class="p-2 a-tag">
 
               <div class="box-part text-center">
 
@@ -124,7 +124,7 @@
                 </div></div>
             </a>
 
-            <a href="{% url 'explorer_top_feeds' %}" class="p-2">
+            <a href="{% url 'explorer_top_feeds' %}" class="p-2 a-tag">
 
               <div class="box-part text-center">
 
@@ -177,8 +177,10 @@
   <script type="text/javascript">
   $(function($) {
   let url = window.location.href;
-  $('a').each(function() {
+  $('.a-tag').each(function() {
+    console.log("function")
     if (this.href === url) {
+      console.log("entered")
       $(this).addClass('active');
     }
   });
