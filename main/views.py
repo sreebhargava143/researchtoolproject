@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+import praw
 # Create your views here.
 
 
@@ -11,7 +12,14 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    reddit = praw.Reddit(
+        client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
+
+    feeds = reddit.subreddit('all').top(limit=1)
+    context = {
+        'feeds':feeds,
+    }
+    return render(request, 'dashboard.html', context=context)
 
 @login_required
 def profile(request):
