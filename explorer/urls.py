@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
 # path('search/', views.search_reddit, name='search'),
 path('subreddit/', views.search_reddit, name='search'),
-path('comments/<str:sub_name>/', views.comments, name='comments'),
+# path('comments/<str:sub_name>/', views.comments, name='comments'),
 path("", views.explore, name="explore"),
+path("comments/<id>/", views.submission_to_json)
 ]

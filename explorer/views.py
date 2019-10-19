@@ -1,6 +1,9 @@
 from django.shortcuts import render
 import praw
 from .forms import SearchForm
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.forms.models import model_to_dict
 
 reddit = praw.Reddit(client_id='aN2WWXxjRA3FPQ',
                      client_secret='bEN3500-jFK0oLSkMoU52ywCeTI',
@@ -25,14 +28,14 @@ def search_reddit(request):
 
 
 
-def comments(request, sub_name):
-    submission = reddit.info([sub_name])
-    for sub in submission:
-        author = sub.author
-        title = sub.title
-        text = sub.selftext
-        comments = sub.comments
-    return render(request, 'explorer/comments.html', {'comments': comments, 'text': text, 'title': title, 'author': author})
+# def comments(request, sub_name):
+#     submission = reddit.info([sub_name])
+#     for sub in submission:
+#         author = sub.author
+#         title = sub.title
+#         text = sub.selftext
+#         comments = sub.comments
+#     return render(request, 'explorer/comments.html', {'comments': comments, 'text': text, 'title': title, 'author': author})
 
 
 def explore(request):
@@ -46,3 +49,67 @@ def explore(request):
         
     form = SearchForm
     return render(request, 'explorer.html', {'result': result, 'form': form})
+
+
+
+def submissions_json_list(subreddit):
+    submissions = []
+    for submission in subreddit.top(limit=3):
+        dic = {
+            "name": submission.name,
+            "title": submission.title,
+            "author": submission.author,
+            "selftext": submission.selftext,
+            "created_utc": submission.created_utc,
+            "subreddit": submission.subreddit.display_name,
+            "subreddit_name":submission.subreddit.name,
+            "url": submission.url,
+            "score": submission.score
+        }
+        submissions.append(dic)
+        dic = {}
+    return submissions
+
+
+
+def subreddit_to_json(request, subreddit_name):
+    subreddit = reddit.subreddit(subreddit_name)
+    subreddit_json = {
+        "name": subreddit.name,
+        "display_name": subreddit.display_name,
+        "public_description": subreddit.public_description,
+        "created_utc": subreddit.created_utc,
+        "subcsribers": subreddit.subscribers,
+        "submissions": submissions_json_list(subreddit)
+    }
+    return JsonResponse(subreddit_json)
+
+
+def comments_json_list(submission):
+    comments = []
+    for comment in submission.comments:
+        dic = {
+            "body": comment.body,
+            "created_utc": comment.created_utc,
+            "id": comment.id,
+            "parent_id": comment.parent_id
+        }
+        comments.append(dic)
+        dic = {}
+    return comments
+
+
+def submission_to_json(request, id):
+    submission = reddit.submission(id)
+    submission_json = {
+        "title": submission.title,
+        "author": submission.author.name,
+        "id": submission.id,
+        "created_utc": submission.created_utc,
+        "selftext": submission.selftext,
+        "score": submission.score,
+        "subreddit": submission.subreddit.display_name,
+        "url": submission.url,
+        "comments": comments_json_list(submission)
+    }
+    return JsonResponse(submission_json)
