@@ -8,5 +8,4 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('home/', views.dashboard, name='dashboard'),
     path('profile/', views.profile, name='profile'),
-    path('bookmarks/', views.bookmarks, name='bookmarks'),
 ]

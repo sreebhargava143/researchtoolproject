@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
+    'bookmarks.apps.BookmarksConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
+    'rest_framework',
     
 ]
 SITE_ID = 2
@@ -179,3 +181,8 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 #or any other page
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}

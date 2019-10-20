@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-import praw
+import praw #reddit api module
+
 
 @login_required(login_url='/accounts/login/')
 def explore(request):
@@ -8,10 +9,10 @@ def explore(request):
 
 @login_required(login_url='/accounts/login/')
 def explorer_hot_feeds(request):
-    reddit = praw.Reddit(
-        client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    subreddit = reddit.subreddit('all')
-    feeds = subreddit.hot(limit=10)
+    # reddit = praw.Reddit(
+    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
+    # subreddit = reddit.subreddit('all')
+    # feeds = subreddit.hot(limit=10)
     context = {
         'feeds':feeds,
     }
@@ -19,45 +20,45 @@ def explorer_hot_feeds(request):
 
 @login_required(login_url='/accounts/login/')
 def explorer_top_feeds(request):
-    reddit = praw.Reddit(
-        client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    subreddit = reddit.subreddit('all')
-    feeds = subreddit.top(limit=10)
+    # reddit = praw.Reddit(
+    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
+    # subreddit = reddit.subreddit('all')
+    # feeds = subreddit.top(limit=10)
     context = {
-        'feeds':feeds,
+        # 'feeds':feeds,
     }
     return render(request, 'explorer.html', context=context)
 
 @login_required(login_url='/accounts/login/')
 def explorer_rising_feeds(request):
-    reddit = praw.Reddit(
-        client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    subreddit = reddit.subreddit('all')
-    feeds = subreddit.rising(limit=10)
+    # reddit = praw.Reddit(
+    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
+    # subreddit = reddit.subreddit('all')
+    # feeds = subreddit.rising(limit=10)
     context = {
-        'feeds':feeds,
+        # 'feeds':feeds,
     }
     return render(request, 'explorer.html', context=context)
 
 @login_required(login_url='/accounts/login/')
 def explorer_controversial_feeds(request):
-    reddit = praw.Reddit(
-        client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    subreddit = reddit.subreddit('all')
-    feeds = subreddit.controversial(limit=10)
+    # reddit = praw.Reddit(
+    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
+    # subreddit = reddit.subreddit('all')
+    # feeds = subreddit.controversial(limit=10)
     context = {
-        'feeds':feeds,
+        # 'feeds':feeds,
     }
     return render(request, 'explorer.html', context=context)
 
 @login_required(login_url='/accounts/login/')
 def explorer_new_feeds(request):
-    reddit = praw.Reddit(
-        client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    subreddit = reddit.subreddit('all')
-    feeds = subreddit.new(limit=10)
+    # reddit = praw.Reddit(
+    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
+    # subreddit = reddit.subreddit('all')
+    # feeds = subreddit.new(limit=10)
     context = {
-        'feeds':feeds,
+        # 'feeds':feeds,
     }
     return render(request, 'explorer.html', context=context)
 
