@@ -1,0 +1,64 @@
+<article class="media content-section fade show alert-dismissible " id="card">
+    <div class="media-body">
+        <div class="d-flex justify-content-between article-metadata">
+            <div class="p-2 row">
+                <span><i class="material-icons">person</i></span><span
+                    id="author">(data[id].author || 'Anonymous')</span>
+            </div>
+            <div class="p-2 row">
+                <div class="btn-group">
+                    <button onclick="addToBookmark()" type="button"
+                        class="btn btn-info">Action</button>
+                    <button type="button"
+                        class="btn btn-info dropdown-toggle dropdown-toggle-split"
+                        data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else
+                            here</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <h2><a class="article-title" href="#"><span
+                    id="title">data[id].title</span></a></h2>
+        <p class="article-content" id="description"> + data[id].description + `
+        </p>
+        </p>
+        <div class="article-content">
+            <a class="mr-2" data-toggle="collapse" href="#content" role="button"
+                aria-expanded="false" aria-controls="content" id="content-button">readmore</a>
+            <div class="collapse row" id="content">
+                <div id="content-body" class="card card-body col-12">data[id].content</div>
+            </div>
+        </div>
+        <img id="image" class="rounded mx-auto d-block img-thumbnail" src="#"
+            alt=" :-( SORRY NO IMAGE">
+        <div
+            class="d-flex .d-sm-flex .d-md-flex flex-column flex-sm-row flex-md-row flex-lg-row flex-xl-row justify-content-around">
+            <div class="p-2">
+                <small class="text-muted">
+                    <a id="bibliography" href="#">
+                        <span>
+                            <i class="material-icons">comment</i>
+                        </span>
+                        &nbsp;Bibliography
+                    </a>
+                    <span id="date-posted"><i
+                            class="material-icons-outlined">thumb_up_alt</i></span>
+                    data[id].publishedAt
+                </small>
+
+            </div>
+        </div>
+    </div>
+</article>

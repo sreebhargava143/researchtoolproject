@@ -12,12 +12,12 @@ def home(request):
 
 @login_required
 def dashboard(request):
-    reddit = praw.Reddit(
-        client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
+    # reddit = praw.Reddit(
+    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
 
-    feeds = reddit.subreddit('all').top(limit=1)
+    # feeds = reddit.subreddit('all').top(limit=1)
     context = {
-        'feeds':feeds,
+        'feeds':None,
     }
     return render(request, 'dashboard.html', context=context)
 
