@@ -9,56 +9,55 @@ def explore(request):
 
 @login_required(login_url='/accounts/login/')
 def explorer_hot_feeds(request):
-    # reddit = praw.Reddit(
-    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    # subreddit = reddit.subreddit('all')
-    # feeds = subreddit.hot(limit=10)
     context = {
-        'feeds':feeds,
+        'page':"search",
+        'query':'hot-news',
     }
     return render(request, 'explorer.html', context=context)
 
 @login_required(login_url='/accounts/login/')
 def explorer_top_feeds(request):
-    # reddit = praw.Reddit(
-    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    # subreddit = reddit.subreddit('all')
-    # feeds = subreddit.top(limit=10)
     context = {
-        # 'feeds':feeds,
+        "page":"search",
+        "query":"top-news"
     }
     return render(request, 'explorer.html', context=context)
 
 @login_required(login_url='/accounts/login/')
 def explorer_rising_feeds(request):
-    # reddit = praw.Reddit(
-    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    # subreddit = reddit.subreddit('all')
-    # feeds = subreddit.rising(limit=10)
     context = {
-        # 'feeds':feeds,
+        "page":"search",
+        "query":"rising"
     }
     return render(request, 'explorer.html', context=context)
 
 @login_required(login_url='/accounts/login/')
 def explorer_controversial_feeds(request):
-    # reddit = praw.Reddit(
-    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    # subreddit = reddit.subreddit('all')
-    # feeds = subreddit.controversial(limit=10)
     context = {
-        # 'feeds':feeds,
+        "page":"search",
+        "query":"controversy"
     }
     return render(request, 'explorer.html', context=context)
 
 @login_required(login_url='/accounts/login/')
 def explorer_new_feeds(request):
-    # reddit = praw.Reddit(
-    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-    # subreddit = reddit.subreddit('all')
-    # feeds = subreddit.new(limit=10)
     context = {
-        # 'feeds':feeds,
+        "page":"search",
+        "query":"latest-news"
     }
     return render(request, 'explorer.html', context=context)
 
+@login_required(login_url='/accounts/login/')
+def explorer_search(request):
+    print(request.GET.get("query"))
+    context = {
+        "page":"search",
+        "query":request.GET.get("query")
+    }
+    return render(request, 'explorer.html', context=context)
+
+def explorer_bookmarks(request):
+    context = {
+        "page": "bookmarks"
+    }
+    return render(request, 'explorer_bookmarks.html', context=context)

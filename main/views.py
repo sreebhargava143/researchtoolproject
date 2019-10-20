@@ -6,18 +6,17 @@ import praw
 
 
 def home(request):
+    context = {
+        "page":"dashboard",
+        }
     if request.user.is_authenticated:
-        return render(request, 'dashboard.html')
+        return render(request, 'dashboard.html', context=context)
     return render(request, 'home.html')
 
 @login_required
 def dashboard(request):
-    # reddit = praw.Reddit(
-    #     client_id='xWAHngnw1APo7w',client_secret='Ffpx4FrMk2Q1cSzOAAZTDhjRK_A',user_agent="storead")
-
-    # feeds = reddit.subreddit('all').top(limit=1)
     context = {
-        'feeds':None,
+        "page":"dashboard",
     }
     return render(request, 'dashboard.html', context=context)
 
@@ -25,6 +24,3 @@ def dashboard(request):
 def profile(request):
     return render(request, 'profile.html')
 
-@login_required
-def bookmarks(request):
-    return render(request, 'bookmarks.html')

@@ -51,8 +51,6 @@ function addCard(data, id) {
     newDatePosted.innerHTML = data.publishedAt
 
 }
-
-
 function addToBookmark(e) {
     e = e || window.event;
     e = e.target || e.srcElement;
@@ -76,6 +74,25 @@ function addToBookmark(e) {
     console.log(cardData)
 }
 
+
+function postBookmarks(data){
+    for (feed in data.results) {
+        fetch(addCard(data.results[feed], feed))
+            .then(res => {
+                console.log("here in :"+data.articles[feed].author)
+            });
+    }
+}
+function postFeeds(data){
+    for (feed in data.articles) {
+        fetch(addCard(data.articles[feed], feed))
+            .then(res => {
+                
+            });
+    }
+}
+
+
 function getFeeds() {
     var url = 'https://newsapi.org/v2/top-headlines?' +
         'country=in&' +
@@ -84,31 +101,33 @@ function getFeeds() {
     fetch(req)
         .then(response => response.json())
         .then(data => {
-            for (feed in data.articles) {
-                fetch(addCard(data.articles[feed], feed))
-                    .then(res => {
-                        console.log(data.articles[feed].author)
-                    });
-            }
+            postFeeds(data)
         });
 }
 
+function explore_bookmarks() {
+    fetch("http://localhost:8000/bookmarks/")
+        .then(res => res.json())
+        .then(data => {
+            postBookmarks(data)
+            }
+        );
+}
 
+function search(query = "trending topics") {
 
-// var url = 'https://newsapi.org/v2/everything?' +
-// 'q=Apple&' +
-// 'from=2019-10-20&' +
-// 'sortBy=popularity&' +
-// 'laguage=en&'+
-// 'apiKey=fb1c2caa84c441d890f12f20499c4604';
+    var url = 'https://newsapi.org/v2/everything?' +
+        'q='+query+'&' +
+        'from=2019-10-20&' +
+        'sortBy=popularity&' +
+        'laguage=en&' +
+        'apiKey=fb1c2caa84c441d890f12f20499c4604';
 
-// var req = new Request(url);
+    var req = new Request(url);
 
-// fetch(req)
-// .then(response => response.json())
-//     .then(data => {
-//         for(feed in data.articles){
-//             fetch(addCard(data.articles, feed))
-//             .then(res => {console.log(data.articles[feed].author)});
-//         }
-// });
+    fetch(req)
+        .then(response => response.json())
+        .then(data => {
+            postFeeds(data)
+        });
+}

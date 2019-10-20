@@ -8,7 +8,7 @@ class Bookmark(models.Model):
     content = models.TextField(null=True, blank=True)
     urlToImage = models.CharField(max_length=500, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
-    publishedAt = models.DateField(null=False)
+    publishedAt = models.CharField(max_length=500, null=False, blank=False)
     url = models.CharField(max_length=500, null=True, blank=True)
 
     def __str__(self):
