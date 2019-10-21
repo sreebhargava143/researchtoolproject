@@ -9,4 +9,6 @@ urlpatterns = [
     path('home/', views.dashboard, name='dashboard'),
     path('profile/', views.profile, name='profile'),
     path('bookmarks/', views.bookmarks, name='bookmarks'),
+    path('create_story/', views.create_story, name='create_story'),
+    path('story_card/', views.story_card, name='story_card'),
 ]

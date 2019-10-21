@@ -1,0 +1,49 @@
+{% extends "main_base.html" %}
+{% block content %}
+  <div class="container">
+
+    <div class="row">
+      <div id="name_of_story" class="col-12 h2 active">
+      </div>
+      <div id="des_of_story" class="col-12 h6">
+      </div>
+    </div>
+
+    <!-- <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+      <img class="card-img-bottom" src="..." alt="Card image cap">
+    </div> -->
+    <div id='story-card' class="row">
+    </div>
+
+    <div class="row mt-2 p-2">
+      <form class="col-12" action="#" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="bookmark">Bookmarks</label>
+            </div>
+            <select class="custom-select" id="bookmark">
+              <option selected>Select one bookmark</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="textarea-id">Write your story...</label>
+            <textarea class="form-control" id="textarea-id" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-info" id='story-card-submit'>Make card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
     'crispy_forms',
+    'ckeditor',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
-    
+
 ]
 SITE_ID = 2
 

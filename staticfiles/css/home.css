@@ -1,0 +1,182 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+  .container-main {
+    display: flex;
+    height: 100%;
+  }
+
+  .div-1 {
+    width: 50%;
+    height: 100%;
+    background: #1da1f2;
+    background-image: url(https://img.icons8.com/ultraviolet/700/000000/user-typing-using-typewriter.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 50% 50%;
+    background-size: contain;
+    background-blend-mode: darken;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+
+  .center-class{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 0 0 1em;
+  }
+
+  .div-class{
+    display: flex;
+    padding: 1.5em;
+  }
+
+  .container-main .div-1 .center-class .div-class h4{
+    padding: .5em 0 0 .5em;
+    font-size: 1em;
+  }
+
+  .div-2 {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-box{
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+  }
+
+  .top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .middle{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .bottom{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .container-main .div-2 .login-box .top h6 strong{
+    width: 100%;
+    margin-bottom: 1rem;
+    font-size: 1em;
+    color: #1da1f2;
+  }
+
+  .container-main .div-2 .login-box .bottom a{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .a-signup{
+    background: #1da1f2;
+    border-radius: 100px;
+    padding: 10px 10px 10px 10px;
+    color: white;
+    text-decoration: none!important;
+    text-align: center;
+  }
+
+  .a-login{
+    border: 1px solid #1da1f2;
+    border-radius: 100px;
+    padding: 10px 15px 10px 15px;
+    color: #1da1f2;
+    text-decoration: none!important;
+    text-align: center;
+  }
+
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .container-main {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .div-1 {
+    width: 100%;
+    background: #1da1f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    order: 1;
+    background-image: url(https://img.icons8.com/ultraviolet/700/000000/user-typing-using-typewriter.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 500px 50%;
+    background-size: contain;
+    background-blend-mode: darken;
+  }
+
+  .div-2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+
+}
+
+@media only screen and (max-width: 576px) {
+  .container-main {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .div-1 {
+    width: 100%;
+    background: #1da1f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    order: 1;
+    background-image: url(https://img.icons8.com/ultraviolet/700/000000/user-typing-using-typewriter.png);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: 200px 50%;
+    background-size: contain;
+    background-blend-mode: darken;
+  }
+
+  .div-2 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
