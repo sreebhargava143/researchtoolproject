@@ -1,19 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Storead{% endblock %}</title>
+  
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/main_base.css' %}" />
-  <script src="https://kit.fontawesome.com/803986fb40.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="{% static 'css/basic_styles.css' %}" />
+  {% include 'css_lib.html' %}
 </head>
-<body>
+<body onload='populate()'>
+    <input type="hidden" id="user_id" value={{user.id}}/>
+    <input type="hidden" id='csrf' value={{csrf_token}} />
   <div class="container-main">
     <div class="left-sidebar">
       {% if not profile %}
@@ -27,7 +24,8 @@
       <menu class="menu-nav">
         <a class='a-tag' href="{% url 'dashboard' %}">
           <span>
-            <img src="https://img.icons8.com/ultraviolet/26/000000/user-typing-using-typewriter.png">
+            <img
+              src="https://img.icons8.com/ultraviolet/26/000000/user-typing-using-typewriter.png">
           </span>
           <span class="hide">Home</span>
         </a>
@@ -42,7 +40,7 @@
           </div>
         </a>
 
-        <a class='a-tag' href="{% url 'bookmarks' %}">
+        <a class='a-tag' href="{% url 'explorer_bookmarks' %}">
           <div class="icon-tab">
             <span class="icons">
               <i class="material-icons">bookmark</i>
@@ -52,7 +50,8 @@
             </span>
           </div>
         </a>
-        <a  class="a-tag" data-toggle="modal" data-target="#logout" href="#logout" id='logout_btn'>
+        <a class="a-tag" data-toggle="modal" data-target="#logout"
+          href="#logout" id='logout_btn'>
           <div class="icon-tab">
             <span class="icons">
               <i class="material-icons">logout</i>
@@ -67,11 +66,13 @@
 
     <div class="main-content ">
       {% if messages %}
-      <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
+      <div class="alert alert-warning alert-dismissible fade show col-12"
+        role="alert">
         {% for message in messages %}
         <h6>{{message}}</h6>
         {% endfor %}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <button type="button" class="close" data-dismiss="alert"
+          aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -85,8 +86,6 @@
                   <div>
                     <h4>HOT</h4>
                   </div>
-
-
                 </div>
               </a>
 
@@ -97,58 +96,65 @@
                   <i class="material-icons"
                   aria-hidden="true">trending_up</i>
 
-                  <div class="title">
-                    <h4>Rising</h4>
-                  </div>
 
-                </div>
-              </a>
+          <a href="{% url 'explorer_rising_feeds' %}" class="p-2 a-tag">
 
-              <a href="{% url 'explorer_new_feeds' %}" class="p-2 a-tag">
+            <div class="box-part text-center">
 
-                <div class="box-part text-center">
+              <i class="material-icons" aria-hidden="true">trending_up</i>
 
-                  <i class="material-icons"
-                  aria-hidden="true">email</i>
+              <div class="title">
+                <h4>Rising</h4>
+              </div>
 
-                  <div class="title">
-                    <h4>New</h4>
-                  </div>
+            </div>
+          </a>
 
+          <a href="{% url 'explorer_new_feeds' %}" class="p-2 a-tag">
 
+            <div class="box-part text-center">
 
-                </div>
-              </a>
+              <i class="material-icons" aria-hidden="true">email</i>
 
-              <a href="{% url 'explorer_controversial_feeds' %}" class="p-2 a-tag">
+              <div class="title">
+                <h4>New</h4>
+              </div>
+            </div>
+          </a>
 
-                <div class="box-part text-center">
+          <a href="{% url 'explorer_controversial_feeds' %}" class="p-2 a-tag">
 
-                  <i class="material-icons"
-                  aria-hidden="true">sentiment_very_dissatisfied
-                </i>
+            <div class="box-part text-center">
 
-                  <div class="title">
-                    <h4>Controversial</h4>
-                  </div></div>
-              </a>
+              <i class="material-icons"
+                aria-hidden="true">sentiment_very_dissatisfied
+              </i>
 
-              <a href="{% url 'explorer_top_feeds' %}" class="p-2 a-tag">
+              <div class="title">
+                <h4>Controversial</h4>
+              </div>
+            </div>
+          </a>
 
-                <div class="box-part text-center">
+          <a href="{% url 'explorer_top_feeds' %}" class="p-2 a-tag">
 
-                  <i class="material-icons"
-                  aria-hidden="true">star</i>
+            <div class="box-part text-center">
 
-                  <div class="title">
-                    <h4>Top</h4>
-                  </div>
-                </div>
-              </a>
+              <i class="material-icons" aria-hidden="true">star</i>
+
+              <div class="title">
+                <h4>Top</h4>
+              </div>
             </div>
             {% endif %}
+          </a>
+          <form class="right-side-input form-group" action="{% url 'explorer_search' %}">
+            <input class="search-field pl-2" type="search" name="query" placeholder="search">
+        </form>
+        </div>
         <div class="row">
           <div class="col-12 overflow-auto">
+            <input type="hidden" id="page" value="{{page}}">
             {% block content %}
             {% endblock %}
           </div>
@@ -156,24 +162,21 @@
       </div>
     </div>
     <div class="right-sidebar">
-      <input class="right-side-input" type="search" name="search" value="search">
+      
       {% block right_content %}
-      {% endblock %}
+      {% endblock right_content %}
     </div>
   </div>
-  <script>
-    function setGetParameter() {
-      searchWord = document.getElementById('search').value;
-      window.location.href = "{% url 'explore' %}" + "?search=" + searchWord;
-    }
-  </script>
+
   <!-- Modal -->
-  <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutTitle" aria-hidden="true">
+  <div class="modal fade" id="logout" tabindex="-1" role="dialog"
+    aria-labelledby="logoutTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title" id="exampleModalLongTitle">Logout</h1>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal"
+            aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -182,28 +185,18 @@
           <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
             {% if redirect_field_value %}
-            <input class="right-side-input" type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+            <input class="right-side-input" type="hidden"
+              name="{{ redirect_field_name }}"
+              value="{{ redirect_field_value }}" />
             {% endif %}
-            <button class="primaryAction button-login" type="submit">Logout</button>
+            <button class="primaryAction button-login"
+              type="submit">Logout</button>
           </form>
         </div>
       </div>
     </div>
   </div>
-  <script type="text/javascript">
-  $(function($) {
-  let url = window.location.href;
-  $('.a-tag').each(function() {
-    console.log("function")
-    if (this.href === url) {
-      console.log("entered")
-      $(this).addClass('active');
-    }
-  });
-});
-  </script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  {% include 'js_lib.html'%}
 </body>
+
 </html>

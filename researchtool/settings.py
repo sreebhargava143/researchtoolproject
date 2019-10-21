@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
+    'bookmarks.apps.BookmarksConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
+    'rest_framework',
     
 ]
 SITE_ID = 2
@@ -137,7 +139,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -180,7 +182,14 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 #or any other page
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
 
+<<<<<<< HEAD
 AUTH_PROFILE_MODULE = 'main.Profile'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main/media/images/')
+=======
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+>>>>>>> ced1eb7745cd507d032eff972d87b2aca3c55365
