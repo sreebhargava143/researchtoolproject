@@ -23,4 +23,6 @@ urlpatterns = [
     path('', include('main.urls')),
     path('explorer/', include('explorer.urls')),
     path('accounts/', include('allauth.urls')),
+    path('story/', include('story.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]

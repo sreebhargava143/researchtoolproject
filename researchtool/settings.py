@@ -36,8 +36,10 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
+    'story.apps.StoryConfig',
     'crispy_forms',
     'ckeditor',
+    'ckeditor_uploader',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,8 +51,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
-
 ]
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
 SITE_ID = 2
 
 MIDDLEWARE = [
@@ -159,8 +163,10 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-LOGIN_REDIRECT_URL = 'dashboard'
-LOGOUT_REDIRECT_URL = 'home'
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
