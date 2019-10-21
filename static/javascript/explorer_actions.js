@@ -54,9 +54,9 @@ function addCard(data, id) {
     newPublishedAt.id = "published-at" + hash
     newPublishedAt.value = data.publishedAt
 
-    if(data.id){
+    if (data.id) {
         newBookmarkId = document.getElementById("bookmark-id")
-        newBookmarkId.id = "bookmark-id"+hash
+        newBookmarkId.id = "bookmark-id" + hash
         newBookmarkId.value = data.id
 
         newBookmark = document.getElementById("bookmark")
@@ -65,11 +65,10 @@ function addCard(data, id) {
         newBookmark.innerHTML = "Delete"
         newBookmark.classList.remove("btn-info");
         newBookmark.classList.add("btn-danger")
-    }
-    else {
+    } else {
         newBookmark = document.getElementById("bookmark")
         newBookmark.id = hash
-        newBookmark.addEventListener("click", addToBookmark);
+        newBookmark.addEventListener("click", promptName);
     }
 
 }
@@ -81,68 +80,88 @@ function deleteBookmark(e) {
     if (e.nodeName === 'BUTTON') {
         hash = e.id
         feedCard = document.getElementById("card" + e.id)
-        csrf = document.getElementById("csrf").value 
+        csrf = document.getElementById("csrf").value
         bookmarkId = document.getElementById("bookmark-id" + e.id).value
-        fetch("http://localhost:8000/bookmarks/"+bookmarkId, 
-        {
+        fetch("http://localhost:8000/bookmarks/" + bookmarkId, {
             method: "DELETE",
-            headers:{
+            headers: {
                 'X-CSRFToken': csrf,
                 'content-type': 'application/json'
             }
-        }
-        );
+        });
         feedCard.parentNode.removeChild(feedCard);
     }
-
 }
-function addToBookmark(e) {
+function closePromptName(){
+    document.getElementById("bookmark-name").value = ""
+    document.getElementById("prompt-name").style.display = 'none';
+}
+function promptName(e) {
     e = e || window.event;
     e = e.target || e.srcElement;
-    var hash = ""
-    if (e.nodeName === 'BUTTON') {
-        hash = e.id
-        feedCard = document.getElementById("card" + e.id)
+    popUp = document.getElementById("prompt-name").style.display = 'block';
+    popUp.focus="focus";
+    document.getElementById("hash").value = e.id
+}
 
-        cardData = {
-            user_id : parseInt(document.getElementById("user_id").value),
-            title: document.getElementById("title" + e.id).innerText,
-            author: document.getElementById("author" + e.id).innerText,
-            content: document.getElementById("content" + e.id).innerText,
-            urlToImage: document.getElementById("image" + e.id).src,
-            description: document.getElementById("description" + e.id).innerText,
-            publishedAt: document.getElementById("published-at" + e.id).value,
-            url: document.getElementById("bibliography" + e.id).href
-        }
-        cardData = JSON.stringify(cardData)
+function checkBookmarkName() {
+    name = document.getElementById('bookmark-name').value
+
+    fetch("http://localhost:8000/bookmarks/names/" + name)
+        .then(res => res.json())
+        .then(data => {
+            if (data.response) {
+                alert("Name already exists provide other name!");
+                document.getElementById('bookmark-name').focus();
+            } else {
+                addToBookmark()
+                document.getElementById("prompt-name").style.display = 'none';
+            }
+        });
+}
+
+function addToBookmark() {
+    hash = document.getElementById("hash").value
+    feedCard = document.getElementById("card" + hash)
+    cardData = {
+        bookmark_name: document.getElementById("bookmark-name").value,
+        user_id: parseInt(document.getElementById("user_id").value),
+        title: document.getElementById("title" + hash).innerText,
+        author: document.getElementById("author" + hash).innerText,
+        content: document.getElementById("content" + hash).innerText,
+        urlToImage: document.getElementById("image" + hash).src,
+        description: document.getElementById("description" + hash).innerText,
+        publishedAt: document.getElementById("published-at" + hash).value,
+        url: document.getElementById("bibliography" + hash).href
     }
+    document.getElementById("bookmark-name").value = ""
+    cardData = JSON.stringify(cardData)
     storeBookmark(cardData)
     feedCard.parentNode.removeChild(feedCard);
 
 }
 
-function postBookmarks(data){
+function postBookmarks(data) {
     for (feed in data.results) {
 
-    addCard(data.results[feed], feed)
+        addCard(data.results[feed], feed)
     }
 }
 
-function storeBookmark(cardData){
-    csrf = document.getElementById("csrf").value 
-        fetch("http://localhost:8000/bookmarks/", 
-        {
+function storeBookmark(cardData) {
+    csrf = document.getElementById("csrf").value
+    fetch("http://localhost:8000/bookmarks/", {
             method: "POST",
-            body: cardData, 
-            headers:{
+            body: cardData,
+            headers: {
                 'X-CSRFToken': csrf,
                 'content-type': 'application/json'
             }
         })
-        .then(res=>res.json());
+        .then(res => res.json());
 }
 
-function postFeeds(data){
+function postFeeds(data) {
     for (feed in data.articles) {
         addCard(data.articles[feed], feed)
     }
@@ -150,7 +169,7 @@ function postFeeds(data){
 
 function getFeeds() {
     var url = 'https://newsapi.org/v2/top-headlines?' +
-        'country=in&'+
+        'country=in&' +
         'apiKey=fb1c2caa84c441d890f12f20499c4604';
     var req = new Request(url);
     fetch(req)
@@ -162,18 +181,17 @@ function getFeeds() {
 
 function explore_bookmarks() {
     user_id = document.getElementById("user_id").value,
-    fetch("http://localhost:8000/bookmarks")
+        fetch("http://localhost:8000/bookmarks")
         .then(res => res.json())
         .then(data => {
             postBookmarks(data)
-            }
-        );
+        });
 }
 
 function search(query = "trending topics") {
 
     var url = 'https://newsapi.org/v2/everything?' +
-        'q='+query+'&' +
+        'q=' + query + '&' +
         'from=2019-10-20&' +
         'sortBy=popularity&' +
         'laguage=en&' +
