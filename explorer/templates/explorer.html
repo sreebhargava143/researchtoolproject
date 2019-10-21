@@ -1,105 +1,11 @@
 {% extends "main_base.html" %}
 {% block content %}
 
-<div class="container">
-    <div class="row mt-5 mb-5">
-        <div class="box">
-            <div class="container">
-                <div class="row">
-                    <a href="{% url 'explorer_hot_feeds' %}" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                        <div class="box-part text-center">
-                            <i class="fa fa-instagram fa-3x"
-                                aria-hidden="true"></i>
-                            <div class="title">
-                                <h4>HOT</h4>
-                            </div>
-
-                            <div class="text">
-                                <span>Latest Hot Topics...</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="{% url 'explorer_rising_feeds' %}" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-                        <div class="box-part text-center">
-
-                            <i class="fa fa-facebook fa-3x"
-                                aria-hidden="true"></i>
-
-                            <div class="title">
-                                <h4>Rising</h4>
-                            </div>
-
-                            <div class="text">
-                                <span>Want to be a spectacular author try
-                                    this...</span>
-                            </div>
-
-                        </div>
-                    </a>
-
-                    <a href="{% url 'explorer_new_feeds' %}" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-                        <div class="box-part text-center">
-
-                            <i class="fa fa-pinterest-p fa-3x"
-                                aria-hidden="true"></i>
-
-                            <div class="title">
-                                <h4>New</h4>
-                            </div>
-
-                            <div class="text">
-                                <span>Day to day discussions</span>
-                            </div>
-
-                        </div>
-                    </a>
-
-                    <a href="{% url 'explorer_controversial_feeds' %}" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-                        <div class="box-part text-center">
-
-                            <i class="fa fa-google-plus fa-3x"
-                                aria-hidden="true"></i>
-
-                            <div class="title">
-                                <h4>Controversial</h4>
-                            </div>
-
-                            <div class="text">
-                                <span>Best place for critics...</span>
-                            </div>
-
-                        </div>
-                    </a>
-
-                    <a href="{% url 'explorer_hot_feeds' %}" class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-
-                        <div class="box-part text-center">
-
-                            <i class="fa fa-github fa-3x"
-                                aria-hidden="true"></i>
-
-                            <div class="title">
-                                <h4>Top</h4>
-                            </div>
-
-                            <div class="text">
-                                <span>Top trending discussions which might
-                                    interest you</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container" id="target">
     <div class="row" id='feed'>
         {% block feed %}
         {% include "feeds.html" %}
-        {% endblock feed %} 
+        {% endblock feed %}
     </div>
 </div>
 {% endblock content%}

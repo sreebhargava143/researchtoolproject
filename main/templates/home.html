@@ -26,15 +26,15 @@
     <div class="div-1">
       <div class="center-class">
         <div class="div-class">
-          <img src="https://img.icons8.com/ios/50/000000/microscope.png">
+          <img src="https://img.icons8.com/ios/40/000000/microscope.png">
           <h4>Search your interests.</h4>
         </div>
         <div class="div-class">
-          <img src="https://img.icons8.com/ios-filled/50/000000/listening.png">
+          <img src="https://img.icons8.com/ios-filled/40/000000/listening.png">
           <h4>Hear what people are talking about.</h4>
         </div>
         <div class="div-class">
-          <img src="https://img.icons8.com/ios/50/000000/storytelling.png">
+          <img src="https://img.icons8.com/ios/40/000000/storytelling.png">
           <h4>Make a beautiful story. </h4>
         </div>
       </div>
@@ -42,17 +42,17 @@
     <div class="div-2">
       <div class="login-box">
         <div class="top">
-          <img src="https://img.icons8.com/doodle/48/000000/search--v2.png">
-          <a class="a-login" href="{% url 'account_login' %}">Log in</a>
+          <img src="https://img.icons8.com/ultraviolet/40/000000/user-typing-using-typewriter.png">
+          <h6><strong>Join Storead today.</strong></h6>
         </div>
         <div class="middle">
 
           <h2><strong>See what’s happening in the world right now</strong></h2>
         </div>
         <div class="bottom">
-          <h6><strong>Join RT today.</strong></h6>
+
           <a class="a-signup" data-toggle="modal" data-target="#signup" href="#signup" id='signup_btn'>Sign up</a>
-          <a class="a-signup" data-toggle="modal" data-target="#login" href="#login" id='login_btn'>Log in</a>
+          <a class="a-login" data-toggle="modal" data-target="#login" href="#login" id='login_btn'>Log in</a>
         </div>
       </div>
     </div>
@@ -111,7 +111,7 @@
                       <div class="form-group form-check">
                           <input type="checkbox" name="remember" class="form-check-input" id="id_remember"><label for="id_remember"><label for="id_remember">Remember Me</label></label></div>
                   </div>
-        
+
                   <input type="hidden" name="next" value="{{ next }}" />
                   <div class="form-links">
                     <input class="button-login btn btn-primary" type="submit" value="Log in">
@@ -121,7 +121,7 @@
             </div>
           </div>
           <div class="modal-footer">
-              New? then<a href="{% url 'account_signup' %}"> sign up »</a>
+              New to Storead? then <a href="{% url 'account_signup' %}"> sign up »</a>
             </div>
           </div>
           {% if redirect_field_value %}

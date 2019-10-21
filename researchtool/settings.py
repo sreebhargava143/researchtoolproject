@@ -36,7 +36,6 @@ ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOST_1")]
 INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
-    'accounts.apps.AccountsConfig',
     'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -180,3 +179,8 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 #or any other page
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+
+AUTH_PROFILE_MODULE = 'main.Profile'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'main/media/images/')
