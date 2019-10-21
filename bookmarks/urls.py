@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('', csrf_exempt(views.BookmarkViewSet.as_view()), name='bookmarks'),
+    path('names/<str:bookmark>/', csrf_exempt(views.get_bookmark_by_name)),
     path('<int:pk>/', csrf_exempt(views.BookmarkDetailViewSet.as_view())),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

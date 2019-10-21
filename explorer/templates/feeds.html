@@ -11,7 +11,8 @@
                 <div class="p-2 row">
                     <div class="btn-group">
                         <button onclick="" type="button"
-                            class="btn btn-info btn-sm" id="bookmark">Bookmark</button>
+                            class="btn btn-info btn-sm"
+                            id="bookmark">Bookmark</button>
                         <!-- <button type="button"
                             class="btn btn-info dropdown-toggle dropdown-toggle-split"
                             data-toggle="dropdown" aria-haspopup="true"
@@ -29,20 +30,22 @@
                     </div>
                 </div>
             </div>
-            <h2><p class="article-title"><span
-                        id="title">data[id].title</span></p></h2>
-                        <div>
-                            <small class="text-muted">                        <span><i
-                                >PostedAt:</i></span>
-                        <span id="date-posted">[id].publishedAt</span></small>
-                        </div>
-                        <div>
-                            <small class="text-muted"> 
-                                    <span><i
-                                        >Time:</i>                       <span id="time-posted">[id].publishedAt</span></small>
-                        </div>
-                        <input type="hidden" value="posted-at" id="published-at">
-            <p class="article-content mt-3" id="description"> + data[id].description
+            <h2>
+                <p class="article-title"><span id="title">data[id].title</span>
+                </p>
+            </h2>
+            <div>
+                <small class="text-muted"> <span><i>PostedAt:</i></span>
+                    <span id="date-posted">[id].publishedAt</span></small>
+            </div>
+            <div>
+                <small class="text-muted">
+                    <span><i>Time:</i> <span
+                            id="time-posted">[id].publishedAt</span></small>
+            </div>
+            <input type="hidden" value="posted-at" id="published-at">
+            <p class="article-content mt-3" id="description"> +
+                data[id].description
                 + `
             </p>
             </p>
@@ -67,7 +70,7 @@
                             </span>
                             &nbsp;Bibliography
                         </a>
-                        
+
                     </small>
                 </div>
             </div>
@@ -75,20 +78,25 @@
     </article>
 </div>
 
+<!-- pop up -->
 
-<div class="page-fit">
-    <div class="row justify-content-md-center">
-        <form class="signup col-6" id="add-bookmark" method="post"
-            action="" class="form-group">
-            {% csrf_token %}
-            <p><input class="form-control form-control-lg" type="text"
-                    name="bookmark" placeholder="Bookmark name" autofocus="autofocus"
-                    minlength="1" maxlength="150" required id="id_username"></p>
-          
-    <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Sign Up
-            &raquo;</button>
+
+<div class="page-fit row justify-content-center align-items-center" id="prompt-name">
+    <input type="hidden" id="hash">
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+                <p><input class="form-control form-control-lg" type="text"
+                    name="bookmark" placeholder="Bookmark name"
+                    autofocus="autofocus" minlength="1" maxlength="150" required
+                    id="bookmark-name"></p>
+    
+            <div class="modal-footer">
+                <button onclick="checkBookmarkName()" class="btn btn-primary">Add
+                    </button>
+                    <button onclick="closePromptName()" class="btn btn-danger">cancel
+                            </button>
+            </div>
+        </div>
     </div>
-    </form>
-</div>
+
 </div>
