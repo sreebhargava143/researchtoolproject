@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.urls import reverse
 import praw
-from .forms import ProfileImageForm, EditUsernameForm, EditEmailForm
+from .forms import ProfileImageForm
 from .models import Profile
 # Create your views here.
 
@@ -34,8 +34,7 @@ def profile(request):
 
 @login_required
 def edit_email(request):
-    email_form = EditEmailForm()
-    return render(request, 'profile.html', {'profile': 1, 'email_form': email_form})
+    return render(request, 'profile.html', {'profile': 1, 'email_form': 1})
 
 
 @login_required
@@ -43,9 +42,7 @@ def email_edit(request):
     username = request.user.username
     user = User.objects.get(username=username)
     if request.method == "POST":
-        email_form = EditEmailForm(request.POST)
-        if email_form.is_valid():
-            new_email = request.POST['email']
+        new_email = request.POST['email']
         user.email = new_email
         user.save()
         return redirect('profile')

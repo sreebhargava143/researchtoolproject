@@ -1,50 +1,62 @@
 {% extends "main_base.html" %}
 {% block content %}
-<div class="col-12">
+<div class="profile-container">
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile.css' %}" />
-    <div>
+    <div class="image-container">
         {% if request.user.profile.profile_image %}
-        <img class="profile_photo" src="{{ request.user.profile.profile_image.url }}" alt="DP">
+        <img class="profile-photo" src="{{ request.user.profile.profile_image.url }}" alt="DP">
         {% else %}
         {% load static %}
-        <img class="profile_photo" src="{% static "/images/default.jpeg" %}" alt="Avatar">
+        <img class="profile-photo" src="{% static "/images/default.jpeg" %}" alt="Avatar">
         {% endif %}
         {% if not image_form %}
-        <a href="{% url 'upload_photo' %}">Edit</a>
+        <p class="change-link"><a href="{% url 'upload_photo' %}">change</a></p>
         {% else %}
-        <form action="{% url 'photo_upload' %}" method="post" enctype="multipart/form-data">
+        <div class="form-group form-control">
+        <form class="d-flex" action="{% url 'photo_upload' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ image_form }}
-            <button>Upload</button>
-        </form>
-        {% endif %}
-    </div>
-
-    <div>
-        {% if user_form %}
-        <form action="{% url 'username_edit' %}" method="post">
-            {% csrf_token %}
-            <input type="text" placeholder="{{ request.user.username }}" required minlength=6 name="username">
             <input type="submit">
         </form>
-        {% else %}
-        {{ request.user.username }}
-        <a href="{% url 'edit_username' %}">Edit</a>
+        </div>
         {% endif %}
     </div>
 
-        <div>
-            {% if email_form %}
-            <form action="{% url 'email_edit' %}" method="post">
-                {% csrf_token %}
-                <input type="text" placeholder="{{ request.user.email }}" required minlength=6 name="email">
-                <input type="submit">
-            </form>
-            {% else %}
-            {{ request.user.email }}
-            <a href="{% url 'edit_email' %}">Edit</a>
-            {% endif %}
+    <div class="d-flex align-items-baseline">
+        <p class="text-label">username:&nbsp;</p>
+        {% if user_form %}
+        <div class="form-group" style="width: 100%;">
+        <form action="{% url 'username_edit' %}" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="{{ request.user.username }}" required minlength=6 name="username"
+                class="form-control" style="width: 100%;">
+        </form>
         </div>
+        {% else %}
+        <div class="d-flex align-items-baseline"">    
+            <p class="text-content">{{ request.user.username }}&nbsp;</p>
+            <a href="{% url 'edit_username' %}">edit</a>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="d-flex align-items-baseline">
+        <p class="text-label">email:&nbsp;</p>
+        {% if email_form %}
+        <div class="form-group" style="width: 100%;">
+        <form action="{% url 'email_edit' %}" method="post">
+            {% csrf_token %}
+            <input type="text" placeholder="{{ request.user.email }}" required minlength=6 name="email"
+                class="form-control">
+        </form>
+        </div>
+        {% else %}
+        <div class="d-flex align-items-baseline">
+        <p class="text-content">{{ request.user.email }}&nbsp;</p>
+        <a href="{% url 'edit_email' %}">edit</a>
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}
