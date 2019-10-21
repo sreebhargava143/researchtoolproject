@@ -182,14 +182,11 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 #or any other page
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
 
-<<<<<<< HEAD
 AUTH_PROFILE_MODULE = 'main.Profile'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'main/media/images/')
-=======
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
->>>>>>> ced1eb7745cd507d032eff972d87b2aca3c55365

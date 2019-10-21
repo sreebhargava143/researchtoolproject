@@ -1,31 +1,39 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Storead{% endblock %}</title>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% include 'css_lib.html' %}
 </head>
+
 <body onload='populate()'>
-    <input type="hidden" id="user_id" value={{user.id}}/>
-    <input type="hidden" id='csrf' value={{csrf_token}} />
+  <input type="hidden" id="user_id" value={{user.id}} />
+  <input type="hidden" id='csrf' value={{csrf_token}} />
   <div class="container-main">
     <div class="left-sidebar">
       {% if not profile %}
       {% load static %}
       <a href="{% url 'profile' %}">
-      <div class="profile-info">
-      <img class="profile-pic" src="{% static "/images/default.jpeg" %}" alt="Avatar">
-      {{ request.user.username }}
-      </div></a>
+        <div class="profile-info">
+          {% if request.user.profile.profile_image %}
+          <img src="{{ request.user.profile.profile_image.url }}" alt="DP" class="profile-pic">
+          {% else %}
+          {% load static %}
+          <img class="profile-pic img-circle" src="{% static "/images/default.jpeg" %}" alt="Avatar">
+          {% endif %}
+
+          {{ request.user.username }}
+        </div>
+      </a>
       {% endif %}
       <menu class="menu-nav">
         <a class='a-tag' href="{% url 'dashboard' %}">
           <span>
-            <img
-              src="https://img.icons8.com/ultraviolet/26/000000/user-typing-using-typewriter.png">
+            <img src="https://img.icons8.com/ultraviolet/26/000000/user-typing-using-typewriter.png">
           </span>
           <span class="hide">Home</span>
         </a>
@@ -50,8 +58,7 @@
             </span>
           </div>
         </a>
-        <a class="a-tag" data-toggle="modal" data-target="#logout"
-          href="#logout" id='logout_btn'>
+        <a class="a-tag" data-toggle="modal" data-target="#logout" href="#logout" id='logout_btn'>
           <div class="icon-tab">
             <span class="icons">
               <i class="material-icons">logout</i>
@@ -66,35 +73,26 @@
 
     <div class="main-content ">
       {% if messages %}
-      <div class="alert alert-warning alert-dismissible fade show col-12"
-        role="alert">
+      <div class="alert alert-warning alert-dismissible fade show col-12" role="alert">
         {% for message in messages %}
         <h6>{{message}}</h6>
         {% endfor %}
-        <button type="button" class="close" data-dismiss="alert"
-          aria-label="Close">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       {% endif %}
       <div class="container">
-          {% if not profile %}
-          <div class="d-flex flex-wrap justify-content-around mb-5 position-sitcky sticky-top nav-div">
-              <a href="{% url 'explorer_hot_feeds' %}" class="p-2 a-tag">
-                <div class="box-part text-center">
-                  <i class="material-icons">whatshot</i>
-                  <div>
-                    <h4>HOT</h4>
-                  </div>
-                </div>
-              </a>
-
-              <a href="{% url 'explorer_rising_feeds' %}" class="p-2 a-tag">
-
-                <div class="box-part text-center">
-
-                  <i class="material-icons"
-                  aria-hidden="true">trending_up</i>
+        {% if not profile %}
+        <div class="d-flex flex-wrap justify-content-around mb-5 position-sitcky sticky-top nav-div">
+          <a href="{% url 'explorer_hot_feeds' %}" class="p-2 a-tag">
+            <div class="box-part text-center">
+              <i class="material-icons">whatshot</i>
+              <div>
+                <h4>HOT</h4>
+              </div>
+            </div>
+          </a>
 
 
           <a href="{% url 'explorer_rising_feeds' %}" class="p-2 a-tag">
@@ -126,8 +124,7 @@
 
             <div class="box-part text-center">
 
-              <i class="material-icons"
-                aria-hidden="true">sentiment_very_dissatisfied
+              <i class="material-icons" aria-hidden="true">sentiment_very_dissatisfied
               </i>
 
               <div class="title">
@@ -137,20 +134,17 @@
           </a>
 
           <a href="{% url 'explorer_top_feeds' %}" class="p-2 a-tag">
-
             <div class="box-part text-center">
-
               <i class="material-icons" aria-hidden="true">star</i>
-
               <div class="title">
                 <h4>Top</h4>
               </div>
             </div>
-            {% endif %}
           </a>
+          {% endif %}
           <form class="right-side-input form-group" action="{% url 'explorer_search' %}">
             <input class="search-field pl-2" type="search" name="query" placeholder="search">
-        </form>
+          </form>
         </div>
         <div class="row">
           <div class="col-12 overflow-auto">
@@ -162,21 +156,19 @@
       </div>
     </div>
     <div class="right-sidebar">
-      
+
       {% block right_content %}
       {% endblock right_content %}
     </div>
   </div>
 
   <!-- Modal -->
-  <div class="modal fade" id="logout" tabindex="-1" role="dialog"
-    aria-labelledby="logoutTitle" aria-hidden="true">
+  <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="logoutTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title" id="exampleModalLongTitle">Logout</h1>
-          <button type="button" class="close" data-dismiss="modal"
-            aria-label="Close">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -185,12 +177,10 @@
           <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
             {% if redirect_field_value %}
-            <input class="right-side-input" type="hidden"
-              name="{{ redirect_field_name }}"
+            <input class="right-side-input" type="hidden" name="{{ redirect_field_name }}"
               value="{{ redirect_field_value }}" />
             {% endif %}
-            <button class="primaryAction button-login"
-              type="submit">Logout</button>
+            <button class="primaryAction button-login" type="submit">Logout</button>
           </form>
         </div>
       </div>

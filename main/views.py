@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.urls import reverse
 import praw
-from .forms import ProfileImageForm, EditUsernameForm
+from .forms import ProfileImageForm, EditUsernameForm, EditEmailForm
 from .models import Profile
 # Create your views here.
 
@@ -29,17 +29,32 @@ def dashboard(request):
 def profile(request):
     username = request.user.username
     user = User.objects.get(username=username)
-    image = user.profile.profile_image
-    return render(request, 'profile.html', {'profile': 1, 'image': image})
+    return render(request, 'profile.html', {'profile': 1})
 
 
 @login_required
-def upload_photo(request):
+def edit_email(request):
+    email_form = EditEmailForm()
+    return render(request, 'profile.html', {'profile': 1, 'email_form': email_form})
+
+
+@login_required
+def email_edit(request):
     username = request.user.username
     user = User.objects.get(username=username)
-    image = user.profile.profile_image
+    if request.method == "POST":
+        email_form = EditEmailForm(request.POST)
+        if email_form.is_valid():
+            new_email = request.POST['email']
+        user.email = new_email
+        user.save()
+        return redirect('profile')
+    return redirect('profile')
+
+@login_required
+def upload_photo(request):
     image_form = ProfileImageForm()
-    return render(request, 'profile.html', {'profile': 1, 'image': image, 'image_form': image_form})
+    return render(request, 'profile.html', {'profile': 1, 'image_form': image_form})
 
 
 @login_required
@@ -47,10 +62,8 @@ def photo_upload(request):
     username = request.user.username
     user = User.objects.get(username=username)
     if request.method == "POST":
-        print("YESS")
         image_form = ProfileImageForm(request.POST, request.FILES)
         if image_form.is_valid():
-            print("is VALID")
             image = image_form.cleaned_data.get('image')
             Profile.objects.update_or_create(user=user, defaults={'profile_image':image})
     return redirect('profile')
@@ -58,17 +71,13 @@ def photo_upload(request):
 
 @login_required
 def edit_username(request):
-    username = request.user.username
-    user = User.objects.get(username=username)
-    image = user.profile.profile_image
-    return render(request, 'profile.html', {'profile': 1, 'image': image, 'user_form': 1})
+    return render(request, 'profile.html', {'profile': 1, 'user_form': 1})
 
 
 @login_required
-def post_new_username(request):
+def username_edit(request):
     username = request.user.username
     user = User.objects.get(username=username)
-    image = user.profile.profile_image
     if request.method == "POST":
         new_username = request.POST['username']
         user.username = new_username
@@ -77,3 +86,5 @@ def post_new_username(request):
     return redirect('profile')
 
 
+def bookmarks(request):
+    pass

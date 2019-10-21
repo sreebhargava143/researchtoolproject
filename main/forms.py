@@ -7,3 +7,7 @@ class ProfileImageForm(forms.Form):
 
 class EditUsernameForm(forms.Form):
     username = forms.CharField(max_length=30)
+
+
+class EditEmailForm(forms.Form):
+    email = forms.EmailField()
