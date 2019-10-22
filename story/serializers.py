@@ -1,7 +1,7 @@
-from main.models import Story
+from .models import Storyline
 from rest_framework import serializers
 
-class StorySerializer(serializers.ModelSerializer):
+class StorylineSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Story
+        model = Storyline
         fields = '__all__'

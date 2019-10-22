@@ -8,31 +8,25 @@ function removeBookmark(e){
 
 function remove_story_card(card_id){
   id = card_id.split('-').pop()
-  alert(id)
   story_card = document.getElementById("story-card-"+id)
   story_card.parentNode.removeChild(story_card)
 }
 
 function getNextId(){
-  console.log(document.getElementById("story").children)
   let nextId = 1;
   if (document.getElementById("story").children.length > 5){
-    alert("chidren-->"+document.getElementById("story").children.length)
     var children = document.getElementById("story").children;
-    alert("last node-->",children[children.length-1].nodeName)
-    console.log(children[children.length-1].nodeName)
     if(children[children.length-1].nodeName == "ARTICLE") {
       // var last = document.getElementById(children.length-1);
       // nextId = parseInt(last.id)+1;
       nextId = parseInt(children[children.length-1].id.split('cardhashedId').pop())+1;
-      alert(" if article-->"+nextId)
+      
     }
     else {
       nextId = parseInt(children[children.length-1].id.split('-').pop())+1;
-      alert(" not article-->"+nextId)
+      
     }
   }
-  alert("out-->"+nextId)
   return nextId
 }
 

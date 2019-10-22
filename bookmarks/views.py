@@ -22,17 +22,17 @@ def get_bookmark_by_name(request, bookmark):
         bookmark = Bookmark.objects.filter(user_id=user, bookmark_name=bookmark).first()
         if(bookmark):
             response = {
-                'response': "true"
+                "response": "true"
             }
         else:
             response = {
-                'present': "false"
+                "present": "false"
             }
     else:
         response = {
-            'response':{
-                'status':'FAILED',
-                'ERROR':'METHOD NOT SUPPORTED'
+            "response":{
+                "status":"FAILED",
+                "ERROR":"METHOD NOT SUPPORTED"
             }
         }
     return JsonResponse(response)
