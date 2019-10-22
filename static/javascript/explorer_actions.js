@@ -1,3 +1,4 @@
+
 function addCard(data, id) {
     hash = "hashedId" + id
     feeds = document.getElementById("feed-card")
@@ -84,6 +85,7 @@ function deleteBookmark(e) {
         bookmarkId = document.getElementById("bookmark-id" + e.id).value
         fetch("http://localhost:8000/bookmarks/" + bookmarkId, {
             method: "DELETE",
+            mode: "no-cors",
             headers: {
                 'X-CSRFToken': csrf,
                 'content-type': 'application/json'
@@ -106,8 +108,7 @@ function promptName(e) {
 
 function checkBookmarkName() {
     name = document.getElementById('bookmark-name').value
-
-    fetch("http://localhost:8000/bookmarks/names/" + name)
+    fetch("http://localhost:8000/bookmarks/names/"+name+"/",{mode: "no-cors"})
         .then(res => res.json())
         .then(data => {
             if (data.response) {
@@ -151,6 +152,7 @@ function postBookmarks(data) {
 function storeBookmark(cardData) {
     csrf = document.getElementById("csrf").value
     fetch("http://localhost:8000/bookmarks/", {
+            mode:"no-cors",
             method: "POST",
             body: cardData,
             headers: {
@@ -181,7 +183,7 @@ function getFeeds() {
 
 function explore_bookmarks() {
     user_id = document.getElementById("user_id").value,
-        fetch("http://localhost:8000/bookmarks")
+        fetch("http://localhost:8000/bookmarks/", {mode:"no-cors"})
         .then(res => res.json())
         .then(data => {
             postBookmarks(data)

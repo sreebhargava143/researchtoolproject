@@ -36,10 +36,7 @@ function getNextId(){
   let nextId = 1;
   if (document.getElementById("story").children.length > 6){
     var children = document.getElementById("story").children;
-    console.log(children[children.length-1].nodeName)
     if(children[children.length-1].nodeName == "ARTICLE") {
-      // var last = document.getElementById(children.length-1);
-      // nextId = parseInt(last.id)+1;
       nextId = parseInt(children[children.length-1].id.split('cardhashedId').pop())+1;
     }
     else {

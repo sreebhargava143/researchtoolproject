@@ -3,13 +3,13 @@
   <div class="container">
     <div class="row">
     {% for s in stories_list%}
-      <a href="{{ s.get_absolute_url }}" class="card mb-2 border border-info col-md-6 col-12">
+      <p href="{% url 'story_detail' s.id s.story_name%}" class="card mb-2 border border-info col-md-6 col-12">
         <div class="card-body">
           <h5 class="card-title">{{s.story_name}}</h5>
           <p class="card-text">{{s.description | truncatechars:100 | safe}}</p>
           <p class="card-text">{{s.publish}}</p>
         </div>
-      </a>
+      </p>
     {%endfor%}
     </div>
   </div>
