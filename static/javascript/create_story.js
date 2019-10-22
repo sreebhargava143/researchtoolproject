@@ -2,9 +2,38 @@ function removeBookmark(e){
   e = e || window.event;
   e = e.target || e.srcElement;
   hash = e.id;
-  alert(e.id)
   card = document.getElementById("cardhashedId"+hash)
   card.parentNode.removeChild(card)
+}
+
+function remove_story_card(card_id){
+  id = card_id.split('-').pop()
+  alert(id)
+  story_card = document.getElementById("story-card-"+id)
+  story_card.parentNode.removeChild(story_card)
+}
+
+function getNextId(){
+  console.log(document.getElementById("story").children)
+  let nextId = 1;
+  if (document.getElementById("story").children.length > 5){
+    alert("chidren-->"+document.getElementById("story").children.length)
+    var children = document.getElementById("story").children;
+    alert("last node-->",children[children.length-1].nodeName)
+    console.log(children[children.length-1].nodeName)
+    if(children[children.length-1].nodeName == "ARTICLE") {
+      // var last = document.getElementById(children.length-1);
+      // nextId = parseInt(last.id)+1;
+      nextId = parseInt(children[children.length-1].id.split('cardhashedId').pop())+1;
+      alert(" if article-->"+nextId)
+    }
+    else {
+      nextId = parseInt(children[children.length-1].id.split('-').pop())+1;
+      alert(" not article-->"+nextId)
+    }
+  }
+  alert("out-->"+nextId)
+  return nextId
 }
 
 function renderBookmark(e) {
@@ -20,13 +49,7 @@ function renderBookmark(e) {
       }
   }).then(res => res.json())
   .then(data => {
-    let current_id = 5;
-    if (document.getElementById("story").children.length > 5){
-      var children = document.getElementById("story").children;
-      alert(children.length)
-      var last = document.getElementById(children.length-1);
-      current_id = parseInt(last.id)+1;
-    }
+    current_id = getNextId()
     story = document.getElementById("story")
     bookmark = addCard(data, current_id);
     story.appendChild(bookmark)
@@ -55,24 +78,16 @@ function renderBookmark(e) {
 }
 
 document.querySelector('#story-card-submit').addEventListener('click', e => {
-  let current_id = 0;
-  if (document.getElementById("story-card").childNodes.length > 1){
-    var children = document.getElementById("story-card").children;
-    var last = children[children.length - 1];
-    current_id = parseInt(last.id);
-  }
+  current_id = getNextId()
   if (document.querySelector('#editor').value) {
     const story_text = document.querySelector('#editor').value;
     let body = document.createElement("p");
-    body.className = "card-text"
+    body.className = "card-text";
     body.appendChild(document.createTextNode(story_text));
 
     let story = document.createElement("div");
-    // story.id = current_id+1;
+    story.id = "story-card-"+current_id;
     story.className = "card mb-2 border border-info col-12";
-
-
-
 
     let small = document.createElement("small");
     small.className = "text-muted";
@@ -90,10 +105,13 @@ document.querySelector('#story-card-submit').addEventListener('click', e => {
 
     let edit = document.createElement("button");
     edit.className = "btn btn-outline-primary btn-sm mr-1";
-    edit.innerText = "Edit"
+    edit.id = "edit-card-"+current_id;
+    edit.innerText = "Edit";
 
     let remove = document.createElement("button");
     remove.className = "btn btn-outline-primary btn-sm mr-1";
+    remove.id = "remove-card-"+current_id;
+    remove.onclick = function() {remove_story_card(remove.id)};
     remove.innerText = "Remove"
 
     let bottom = document.createElement("div");
