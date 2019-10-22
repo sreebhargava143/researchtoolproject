@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Storead{% endblock %}</title>
-  
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% include 'css_lib.html' %}
 </head>
@@ -19,7 +19,7 @@
             <img
               src="https://img.icons8.com/ultraviolet/26/000000/user-typing-using-typewriter.png">
           </span>
-          <span class="hide">Home</span>
+          <span class="hide">Storead</span>
         </a>
         <a class='a-tag' href="{% url 'explore' %}">
           <div class="icon-tab">
@@ -28,6 +28,17 @@
             </span>
             <span class="hide">
               Explore
+            </span>
+          </div>
+        </a>
+
+        <a class="a-tag" data-toggle="modal" data-target="#create_story" href="#create_story" id='create_story_btn'>
+          <div class="icon-tab">
+            <span class="icons">
+              <i class="material-icons" aria-label="Create Story">assignment</i>
+            </span>
+            <span class="hide">
+              Create Story
             </span>
           </div>
         </a>
@@ -70,8 +81,7 @@
       </div>
       {% endif %}
       <div class="container">
-        <div
-          class="d-flex flex-wrap justify-content-around mb-5 position-sitcky sticky-top nav-div">
+        <div class="d-flex flex-wrap justify-content-around mb-5 position-sitcky sticky-top nav-div">
           <a href="{% url 'explorer_hot_feeds' %}" class="p-2 a-tag">
             <div class="box-part text-center">
               <i class="material-icons">whatshot</i>
@@ -110,9 +120,9 @@
 
             <div class="box-part text-center">
 
-              <i class="material-icons"
-                aria-hidden="true">sentiment_very_dissatisfied
-              </i>
+                  <i class="material-icons"
+                  aria-hidden="true">sports_kabaddi
+                </i>
 
               <div class="title">
                 <h4>Controversial</h4>
@@ -131,10 +141,12 @@
               </div>
             </div>
           </a>
-          <form class="right-side-input form-group" action="{% url 'explorer_search' %}">
-            <input class="search-field pl-2" type="search" name="query" placeholder="search">
-        </form>
+
         </div>
+        <form class="right-side-input form-group row" action="{% url 'explorer_search' %}">
+          <input class="search-field pl-2" type="search" name="query" placeholder="search">
+        </form>
+
         <div class="row">
           <div class="col-12 overflow-auto">
             <input type="hidden" id="page" value="{{page}}">
@@ -145,7 +157,7 @@
       </div>
     </div>
     <div class="right-sidebar">
-      
+
       {% block right_content %}
       {% endblock right_content %}
     </div>
@@ -179,6 +191,29 @@
       </div>
     </div>
   </div>
+  <!--Create Story Modal -->
+  <div class="modal fade" id="create_story" tabindex="-1" role="dialog" aria-labelledby="createStory" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title" id="exampleModalLongTitle">Create Story</h1>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form class="signup" id="create_story_form" method="get" action="{% url 'create_story' %}" class="form-group">
+            <p><input class="form-control form-control-lg" type="text" name="story_name" placeholder="story_name" required id="story_name"></p>
+            <textarea class="form-control form-control-lg" name="description" placeholder="Description" autofocus="autofocus" rows="4" cols="80" id="story_description" required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button id='create_story_button' type="submit" class="btn btn-primary">Create Story &raquo;</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
   {% include 'js_lib.html'%}
 </body>
 

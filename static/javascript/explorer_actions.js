@@ -70,7 +70,7 @@ function addCard(data, id) {
         newBookmark.id = hash
         newBookmark.addEventListener("click", promptName);
     }
-
+    return newCard
 }
 
 function deleteBookmark(e) {
