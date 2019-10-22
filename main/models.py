@@ -9,18 +9,10 @@ class Story(models.Model):
     description = models.TextField(blank=False)
     author = models.ForeignKey(User, verbose_name="author name", db_index=True, on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, db_index=True)
-    slug = models.SlugField(max_length=250, unique_for_date='publish')
     publish = models.DateTimeField(default=timezone.now)
 
     class Meta:
         ordering = ('-created',)
-
-    def get_absolute_url(self):
-        return reverse('story_detail',
-                        args=[self.publish.year,
-                        self.publish.month,
-                        self.publish.day,
-                        self.slug])
 
     def __str__(self):
         return '%s' % self.story_name
