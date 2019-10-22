@@ -34,7 +34,7 @@ function edit_story_card(edit_button_id){
 
 function getNextId(){
   let nextId = 1;
-  if (document.getElementById("story").children.length > 5){
+  if (document.getElementById("story").children.length > 6){
     var children = document.getElementById("story").children;
     console.log(children[children.length-1].nodeName)
     if(children[children.length-1].nodeName == "ARTICLE") {

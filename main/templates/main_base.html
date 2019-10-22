@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>{% block title %}Storead{% endblock %}</title>
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {% include 'css_lib.html' %}
 </head>
@@ -81,12 +81,12 @@
       </div>
       {% endif %}
       <div class="container">
-        <div class="d-flex flex-wrap justify-content-around mb-5 position-sitcky sticky-top nav-div">
+        <div class="border-bottom border-dark d-flex flex-wrap justify-content-around mb-4 position-sitcky sticky-top nav-div">
           <a href="{% url 'explorer_hot_feeds' %}" class="p-2 a-tag">
             <div class="box-part text-center">
-              <i class="material-icons">whatshot</i>
-              <div>
-                <h4>HOT</h4>
+              <i class="material-icons" aria-hidden="true">whatshot</i>
+              <div class='title hide'>
+                <h4 class="hide">HOT</h4>
               </div>
             </div>
           </a>
@@ -97,8 +97,8 @@
 
               <i class="material-icons" aria-hidden="true">trending_up</i>
 
-              <div class="title">
-                <h4>Rising</h4>
+              <div class="title hide">
+                <h4 class="hide">Rising</h4>
               </div>
 
             </div>
@@ -110,7 +110,7 @@
 
               <i class="material-icons" aria-hidden="true">email</i>
 
-              <div class="title">
+              <div class="title hide">
                 <h4>New</h4>
               </div>
             </div>
@@ -124,7 +124,7 @@
                   aria-hidden="true">sports_kabaddi
                 </i>
 
-              <div class="title">
+              <div class="title hide">
                 <h4>Controversial</h4>
               </div>
             </div>
@@ -136,16 +136,17 @@
 
               <i class="material-icons" aria-hidden="true">star</i>
 
-              <div class="title">
+              <div class="title hide">
                 <h4>Top</h4>
               </div>
             </div>
           </a>
-
+          <form class="col-12" action="{% url 'explorer_search' %}">
+            <input class="form-control search-box mb-2" type="search" name="query" placeholder="search">
+          </form>
         </div>
-        <form class="right-side-input form-group row" action="{% url 'explorer_search' %}">
-          <input class="search-field pl-2" type="search" name="query" placeholder="search">
-        </form>
+
+
 
         <div class="row">
           <div class="col-12 overflow-auto">
@@ -157,7 +158,6 @@
       </div>
     </div>
     <div class="right-sidebar">
-
       {% block right_content %}
       {% endblock right_content %}
     </div>

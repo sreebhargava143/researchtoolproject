@@ -3,12 +3,12 @@
         id="card">
         <input type="hidden" id="bookmark-id">
         <div class="media-body">
-            <div class="d-flex justify-content-between article-metadata">
-                <div class="p-2 row">
-                    <span><i class="material-icons">person</i></span><span
-                        id="author">(data[id].author || 'Anonymous')</span>
+            <div class="d-flex flex-wrap justify-content-between article-metadata">
+                <div class="p-2 row active">
+                    <span><i class="material-icons">person</i></span>
+                    <span id="author">(data[id].author || 'Anonymous')</span>
                 </div>
-                <div class="p-2 row">
+                <div class="p-2">
                     <div class="btn-group">
                         <button onclick="" type="button"
                             class="btn btn-info btn-sm"
@@ -30,10 +30,10 @@
                     </div>
                 </div>
             </div>
-            <h2>
-                <p class="article-title"><span id="title">data[id].title</span>
+            <div class="mt-2">
+                <p class="h5 font-weight-normal text-justify"><span id="title">data[id].title</span>
                 </p>
-            </h2>
+            </div>
             <div>
                 <small class="text-muted"> <span><i>PostedAt:</i></span>
                     <span id="date-posted">[id].publishedAt</span></small>
@@ -44,7 +44,7 @@
                             id="time-posted">[id].publishedAt</span></small>
             </div>
             <input type="hidden" value="posted-at" id="published-at">
-            <p class="article-content mt-3" id="description"> +
+            <p class="article-content mt-3 font-weight-light text-justify" id="description"> +
                 data[id].description
                 + `
             </p>

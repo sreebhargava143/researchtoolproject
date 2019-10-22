@@ -63,7 +63,7 @@ body {
 
   .top{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; 
     margin-bottom: 1rem;
   }
 
