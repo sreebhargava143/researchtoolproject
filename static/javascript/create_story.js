@@ -8,31 +8,44 @@ function removeBookmark(e){
 
 function remove_story_card(card_id){
   id = card_id.split('-').pop()
-  alert(id)
   story_card = document.getElementById("story-card-"+id)
   story_card.parentNode.removeChild(story_card)
 }
 
+function edit_and_save(){
+  id = document.getElementById('current-text-card').value
+  text = document.getElementById("modal-editor").value;
+  story_card = document.querySelector(`#${id} .card-body .card-text`)
+  story_card.innerText = text
+  alert("Content Saved! You can close or continue editing.")
+}
+
+function edit_story_card(edit_button_id){
+  id = edit_button_id.split('-').pop()
+  story_card = document.getElementById("story-card-"+id)
+  text = document.getElementById("story-card-"+id).innerText
+  document.getElementById('current-text-card').value = "story-card-"+id
+  textarea_element = document.getElementById("modal-editor")
+  textarea_element.value = text
+  modal_element = document.getElementById("edit-story-card")
+  modal_element.modal();
+  save_button = document.getElementById("edit-and-save").click()
+}
+
 function getNextId(){
-  console.log(document.getElementById("story").children)
   let nextId = 1;
   if (document.getElementById("story").children.length > 5){
-    alert("chidren-->"+document.getElementById("story").children.length)
     var children = document.getElementById("story").children;
-    alert("last node-->",children[children.length-1].nodeName)
     console.log(children[children.length-1].nodeName)
     if(children[children.length-1].nodeName == "ARTICLE") {
       // var last = document.getElementById(children.length-1);
       // nextId = parseInt(last.id)+1;
       nextId = parseInt(children[children.length-1].id.split('cardhashedId').pop())+1;
-      alert(" if article-->"+nextId)
     }
     else {
       nextId = parseInt(children[children.length-1].id.split('-').pop())+1;
-      alert(" not article-->"+nextId)
     }
   }
-  alert("out-->"+nextId)
   return nextId
 }
 
@@ -56,7 +69,7 @@ function renderBookmark(e) {
     newBookmark = document.getElementById("hashedId" + current_id)
     newBookmark.name = "bookmark"+data.id
     newBookmark.id = current_id
-    newBookmark.classList.add("btn-warning");
+    newBookmark.classList.add("btn-outline-info");
     newBookmark.classList.remove("btn-danger")
     newBookmark.innerHTML = "remove"
     newBookmark.removeEventListener('click', deleteBookmark);
@@ -103,19 +116,24 @@ document.querySelector('#story-card-submit').addEventListener('click', e => {
     // body_creator.appendChild(date);
     story.appendChild(body_creator);
 
-    let edit = document.createElement("button");
-    edit.className = "btn btn-outline-primary btn-sm mr-1";
+    let edit = document.createElement("input");
+    edit.type = "button"
+    edit.className = "btn btn-outline-info btn-sm mr-1";
     edit.id = "edit-card-"+current_id;
-    edit.innerText = "Edit";
+    edit.setAttribute("data-toggle", "modal");
+    edit.setAttribute("data-target", "#edit-story-card");
+    edit.onclick = function() {edit_story_card(this.id)};
+    edit.value = "Edit"
 
-    let remove = document.createElement("button");
-    remove.className = "btn btn-outline-primary btn-sm mr-1";
+    let remove = document.createElement("input");
+    remove.type = "button"
+    remove.className = "btn btn-outline-info btn-sm mr-1";
     remove.id = "remove-card-"+current_id;
-    remove.onclick = function() {remove_story_card(remove.id)};
-    remove.innerText = "Remove"
+    remove.onclick = function() {remove_story_card(this.id)};
+    remove.value = "Remove"
 
     let bottom = document.createElement("div");
-    bottom.className = "card-img-bottom pb-2";
+    bottom.className = "card-img-bottom pb-2 d-flex justify-content-end";
     bottom.appendChild(edit)
     bottom.appendChild(remove)
     story.appendChild(bottom)
