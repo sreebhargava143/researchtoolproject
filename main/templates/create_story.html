@@ -5,12 +5,16 @@
   <div class="container">
     <div id='story' class="row">
       <div class="col-12">
-        <div id="name_of_story" class="col-12 h2 active">
+        <div id="name_of_story" class="h2 active">
           <p>Title: {{ story_name }}</p>
         </div>
-        <div id="des_of_story" class="col-12 h6">
+        <div id="des_of_story" class="h6">
           <p>description: {{ description }}</p>
         </div>
+      </div>
+
+      <div class="d-flex justify-content-end col-12 mb-1">
+        <button type="button" class="btn btn-info btn-sm">Save Story</button>
       </div>
 
       <div id='story-card' class="col-12"></div>
@@ -21,10 +25,10 @@
     <div class="row mt-2 p-2">
       <!-- <form class="col-12" action="#" method="POST"> -->
         {% csrf_token %}
-        <div class="form-group">
+        <div class="form-group col-12">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="bookmark">Bookmarks</label>
+              <label class="input-group-text " for="bookmark">Bookmarks</label>
             </div>
             <select class="custom-select" id="bookmark" onchange="renderBookmark()">
               <option id="select-default" disabled selected value> -- select a bookmark -- </option>
@@ -46,5 +50,33 @@
       <!-- </form> -->
     </div>
   </div>
+
+  <!-- Modal -->
+
+<!-- Modal -->
+<input type="hidden" id='current-text-card' value="">
+<div class="modal fade" id="edit-story-card" tabindex="-1" role="dialog" aria-labelledby="Edit Card" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit card</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <textarea class="form-control" id="modal-editor" name="name" rows="8" cols="50"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button onclick="edit_and_save()" type="button" class="btn btn-primary" id="edit-and-save">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
