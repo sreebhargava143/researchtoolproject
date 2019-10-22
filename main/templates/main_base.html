@@ -96,24 +96,17 @@
 
 
           <a href="{% url 'explorer_rising_feeds' %}" class="p-2 a-tag">
-
             <div class="box-part text-center">
-
               <i class="material-icons" aria-hidden="true">trending_up</i>
-
               <div class="title">
                 <h4>Rising</h4>
               </div>
-
             </div>
           </a>
 
           <a href="{% url 'explorer_new_feeds' %}" class="p-2 a-tag">
-
             <div class="box-part text-center">
-
               <i class="material-icons" aria-hidden="true">email</i>
-
               <div class="title">
                 <h4>New</h4>
               </div>
@@ -121,12 +114,8 @@
           </a>
 
           <a href="{% url 'explorer_controversial_feeds' %}" class="p-2 a-tag">
-
             <div class="box-part text-center">
-
-              <i class="material-icons" aria-hidden="true">sentiment_very_dissatisfied
-              </i>
-
+              <i class="material-icons" aria-hidden="true">sentiment_very_dissatisfied</i>
               <div class="title">
                 <h4>Controversial</h4>
               </div>
@@ -141,11 +130,11 @@
               </div>
             </div>
           </a>
-          {% endif %}
           <form class="right-side-input form-group" action="{% url 'explorer_search' %}">
             <input class="search-field pl-2" type="search" name="query" placeholder="search">
           </form>
         </div>
+        {% endif %}
         <div class="row">
           <div class="col-12 overflow-auto">
             <input type="hidden" id="page" value="{{page}}">

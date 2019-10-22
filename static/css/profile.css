@@ -31,3 +31,11 @@
 .text-content {
     font-size: 1.5rem;
 }
+
+@media (min-width: 577px) and (max-width: 768px) {
+
+}
+
+@media only screen and (max-width: 576px) {
+
+}
