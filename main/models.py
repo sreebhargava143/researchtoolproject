@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 class Story(models.Model):
@@ -17,7 +16,7 @@ class Story(models.Model):
         ordering = ('-created',)
 
     def get_absolute_url(self):
-        return reverse('story:story_detail',
+        return reverse('story_detail',
                         args=[self.publish.year,
                         self.publish.month,
                         self.publish.day,

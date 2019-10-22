@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'explorer.apps.ExplorerConfig',
     'main.apps.MainConfig',
     'story.apps.StoryConfig',
+    'bookmarks.apps.BookmarksConfig',
     'crispy_forms',
     'ckeditor',
     'ckeditor_uploader',
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
+    'rest_framework',
+
 ]
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
@@ -142,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -186,3 +189,8 @@ ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
 ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 #or any other page
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
