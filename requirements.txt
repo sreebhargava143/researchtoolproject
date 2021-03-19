@@ -14,7 +14,7 @@ django-ckeditor==5.7.1
 django-crispy-forms==1.7.2
 django-js-asset==1.2.2
 django-widget-tweaks==1.4.5
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 fake-useragent==0.1.11
 idna==2.8
 lxml==4.4.1
